@@ -1,0 +1,69 @@
+---
+
+ants:
+
+  package_groups:
+
+    - name: python3
+      description: Python3 Packages
+
+      packages:
+
+        - name: python3
+          installed_by: apt
+          description: >-
+            Python is an interpreted, object-oriented, high-level programming language with dynamic
+            semantics. Its high-level built in data structures, combined with dynamic typing and
+            dynamic binding, make it very attractive for Rapid Application Development, as well as
+            for use as a scripting or glue language to connect existing components together.
+            Python's simple, easy to learn syntax emphasizes readability and therefore reduces
+            the cost of program maintenance. Python supports modules and packages, which
+            encourages program modularity and code reuse. The Python interpreter and the
+            extensive standard library are available in source or binary form without charge for
+            all major platforms, and can be freely distributed.
+
+        - name: ansible
+          installed_by: pip3
+          description: >-
+            Ansible is a radically simple IT automation engine that automates cloud provisioning,
+            configuration management, application deployment, intra-service orchestration, and many
+            other IT needs.
+          version: 2.7.9
+
+        - name: jmespath
+          installed_by: pip3
+          description: JMESPath is a query language for JSON.
+
+        - name: jinja2
+          installed_by: pip3
+          description: Jinja2 is a templating engine for Python.
+
+        - name: flask
+          installed_by: pip3
+          description: >-
+            Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions.
+
+
+    - name: system
+      description: System Utilities
+
+      packages:
+
+        - name: git
+          installed_by: apt
+          description: >-
+            Git is a distributed version-control system for tracking changes in source code during
+            software development. It is designed for coordinating work among programmers, but it
+            can be used to track changes in any set of files. Its goals include speed, data
+            integrity, and support for distributed, non-linear workflows.
+
+        - name: bash
+          installed_by: apt
+          description: >-
+            Bourne Again SHell. The default.
+
+        - name: zsh
+          installed_by: apt
+          description: >-
+            The [Zsh Reference Card](http://www.bash2zsh.com/zsh_refcard/refcard.pdf)
+            and the [zsh-lovers man page](http://grml.org/zsh/zsh-lovers.html) are indispensable.

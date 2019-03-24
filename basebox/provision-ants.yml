@@ -1,0 +1,80 @@
+---
+
+- name: INSTALL PACKAGES
+  hosts: all
+
+  vars_files:
+    - ants.yml
+
+  tasks:
+
+    - debug:
+        msg: "installing via apt: {{ ants | json_query('package_groups[].packages[?installed_by==`apt`][].name') }}"
+
+    - name: install packages via apt
+      become: yes
+      apt:
+        name: "{{ ants | json_query('package_groups[].packages[?installed_by==`apt`][].name') }}"
+        state: latest
+        update_cache: yes
+        cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+
+    - debug:
+        msg: "installing via pip3: {{ ants | json_query('package_groups[].packages[?installed_by==`pip3`][].name') }}"
+
+    - name: install python3 packages via pip3
+      pip:
+        name: "{{ ants | json_query('package_groups[].packages[?installed_by==`pip3`][].name') }}"
+        extra_args: --user
+        executable: pip3
+
+
+- name: SYSTEM TWEAKS
+  hosts: all
+
+  tasks:
+
+    - name: suppress ubuntu motd
+      become: yes
+      shell: |
+        chmod a-x /etc/update-motd.d/*
+      args:
+        warn: false
+
+    - name: set hostname
+      become: yes
+      hostname:
+        name: ants
+
+    - name: copy various files for root and vagrant
+      become: yes
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+        backup: yes
+      loop:
+        - { src: 'files/motd', dest: '/etc/motd', owner: root, group: root, mode: 0644 }
+
+        - { src: 'files/bash.sh', dest: '/root/.bash.sh', owner: root, group: root, mode: 0644 }
+        - { src: 'files/dir_colors', dest: '/root/.dir_colors', owner: root, group: root, mode: 0644 }
+        #- { src: 'files/vimrc', dest: '/root/.vimrc', owner: root, group: root, mode: 0644 }
+
+        - { src: 'files/bash.sh', dest: '/home/vagrant/.bash.sh', owner: vagrant, group: vagrant, mode: 0644 }
+        - { src: 'files/dir_colors', dest: '/home/vagrant/.dir_colors', owner: vagrant, group: vagrant, mode: 0644 }
+        #- { src: 'files/vimrc', dest: '/home/vagrant/.vimrc', owner: vagrant, group: vagrant, mode: 0644 }
+
+    - name: bashrc for user - vagrant
+      lineinfile:
+        path: /home/vagrant/.bashrc
+        insertafter: EOF
+        line: source /home/vagrant/.bash.sh
+
+    - name: bashrc for user - root
+      become: yes
+      lineinfile:
+        path: /root/.bashrc
+        insertafter: EOF
+        line: source /root/.bash.sh
