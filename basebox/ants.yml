@@ -67,3 +67,26 @@ ants:
           description: >-
             The [Zsh Reference Card](http://www.bash2zsh.com/zsh_refcard/refcard.pdf)
             and the [zsh-lovers man page](http://grml.org/zsh/zsh-lovers.html) are indispensable.
+
+        - name: curl
+          installed_by: apt
+          description: >-
+            A tool to transfer data from or to a server, using one of the supported
+            protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3,
+            POP3S, RTMP, RTSP, SCP, SFTP, SMB, SMBS, SMTP, SMTPS, TELNET and TFTP). The command is
+            designed to work without user interaction.
+
+        - name: tcpdump
+          installed_by: apt
+          description: >-
+            Capture network traffic.
+
+        - name: tshark
+          installed_by: apt
+          description: >-
+            Console version of Wireshark, a tool that captures and analyzes packets off the wire.
+
+        - name: telnet
+          installed_by: apt
+          description: >-
+            Telnet, what else?
