@@ -126,7 +126,7 @@ alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias ip='ip --color'
 alias ipb='ip --color --brief'
 
-alias ab="ansible-playbook"
+alias ap="ansible-playbook"
 alias va="source venv/bin/activate"
 
 alias gl="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai]\" --decorate --graph"
@@ -135,11 +135,12 @@ alias gll="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %a
 alias gs="git status -s"
 alias gss="git status"
 
-alias gb='git branch'
+alias gb='git branch '
+alias go='git checkout '
 alias grv='git remote -v'
 
 alias gc="git commit"
-alias ga="git add ."
+alias ga="git add "
 alias gd="git diff"
 alias gpl="git pull origin master --tags"
 alias gps="git push origin master --tags"
