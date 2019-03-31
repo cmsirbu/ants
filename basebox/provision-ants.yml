@@ -56,15 +56,17 @@
         mode: "{{ item.mode }}"
         backup: yes
       loop:
-        - { src: 'files/motd', dest: '/etc/motd', owner: root, group: root, mode: 0644 }
+        - { src: 'files/motd', dest: '/etc/motd', owner: root, group: root, mode: 644 }
 
-        - { src: 'files/bash.sh', dest: '/root/.bash.sh', owner: root, group: root, mode: 0644 }
-        - { src: 'files/dir_colors', dest: '/root/.dir_colors', owner: root, group: root, mode: 0644 }
-        #- { src: 'files/vimrc', dest: '/root/.vimrc', owner: root, group: root, mode: 0644 }
+        - { src: 'files/bash.sh', dest: '/root/.bash.sh', owner: root, group: root, mode: 644 }
+        - { src: 'files/dir_colors', dest: '/root/.dir_colors', owner: root, group: root, mode: 644 }
+        - { src: 'files/vim/vimrc', dest: '/root/.vimrc', owner: root, group: root, mode: 644 }
+        - { src: 'files/vim/', dest: '/root/.vim', owner: root, group: root, mode: preserve }
 
-        - { src: 'files/bash.sh', dest: '/home/vagrant/.bash.sh', owner: vagrant, group: vagrant, mode: 0644 }
-        - { src: 'files/dir_colors', dest: '/home/vagrant/.dir_colors', owner: vagrant, group: vagrant, mode: 0644 }
-        #- { src: 'files/vimrc', dest: '/home/vagrant/.vimrc', owner: vagrant, group: vagrant, mode: 0644 }
+        - { src: 'files/bash.sh', dest: '/home/vagrant/.bash.sh', owner: vagrant, group: vagrant, mode: 644 }
+        - { src: 'files/dir_colors', dest: '/home/vagrant/.dir_colors', owner: vagrant, group: vagrant, mode: 644 }
+        - { src: 'files/vim/vimrc', dest: '/home/vagrant/.vimrc', owner: vagrant, group: vagrant, mode: 644 }
+        - { src: 'files/vim/', dest: '/home/vagrant/.vim', owner: vagrant, group: vagrant, mode: preserve }
 
     - name: bashrc for user - vagrant
       lineinfile:
