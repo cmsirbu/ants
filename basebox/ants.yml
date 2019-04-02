@@ -68,6 +68,11 @@ ants:
             The [Zsh Reference Card](http://www.bash2zsh.com/zsh_refcard/refcard.pdf)
             and the [zsh-lovers man page](http://grml.org/zsh/zsh-lovers.html) are indispensable.
 
+        - name: vim
+          installed_by: apt
+          description: >-
+            Vi IMproved - enhanced vi editor
+
         - name: curl
           installed_by: apt
           description: >-
