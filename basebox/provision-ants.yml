@@ -6,25 +6,33 @@
   vars_files:
     - ants.yml
 
+  vars:
+    - apt_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`apt`][].name')
+                 }}"
+    - pip3_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`pip3`][].name')
+                 }}"
+
   tasks:
 
     - debug:
-        msg: "installing via apt: {{ ants | json_query('package_groups[].packages[?installed_by==`apt`][].name') }}"
+        msg: "installing via apt: {{ apt_list }}"
 
     - name: install packages via apt
-      become: yes
+      become: true
       apt:
-        name: "{{ ants | json_query('package_groups[].packages[?installed_by==`apt`][].name') }}"
+        name: "{{ apt_list }}"
         state: latest
-        update_cache: yes
+        update_cache: true
         cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
 
     - debug:
-        msg: "installing via pip3: {{ ants | json_query('package_groups[].packages[?installed_by==`pip3`][].name') }}"
+        msg: "installing via pip3: {{ pip3_list }}"
 
     - name: install python3 packages via pip3
       pip:
-        name: "{{ ants | json_query('package_groups[].packages[?installed_by==`pip3`][].name') }}"
+        name: "{{ pip3_list }}"
         extra_args: --user
         executable: pip3
 
@@ -35,38 +43,46 @@
   tasks:
 
     - name: suppress ubuntu motd
-      become: yes
+      become: true
       shell: |
         chmod a-x /etc/update-motd.d/*
       args:
         warn: false
 
     - name: set hostname
-      become: yes
+      become: true
       hostname:
         name: ants
 
     - name: copy various files for root and vagrant
-      become: yes
+      become: true
       copy:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
         owner: "{{ item.owner }}"
         group: "{{ item.group }}"
         mode: "{{ item.mode }}"
-        backup: yes
+        backup: true
       loop:
-        - { src: 'files/motd', dest: '/etc/motd', owner: root, group: root, mode: 644 }
+        - {src: 'files/motd', dest: '/etc/motd',
+           owner: root, group: root, mode: 644}
+        - {src: 'files/bash.sh', dest: '/root/.bash.sh',
+           owner: root, group: root, mode: 644}
+        - {src: 'files/dir_colors', dest: '/root/.dir_colors',
+           owner: root, group: root, mode: 644}
+        - {src: 'files/vim/vimrc', dest: '/root/.vimrc',
+           owner: root, group: root, mode: 644}
+        - {src: 'files/vim/', dest: '/root/.vim',
+           owner: root, group: root, mode: preserve}
 
-        - { src: 'files/bash.sh', dest: '/root/.bash.sh', owner: root, group: root, mode: 644 }
-        - { src: 'files/dir_colors', dest: '/root/.dir_colors', owner: root, group: root, mode: 644 }
-        - { src: 'files/vim/vimrc', dest: '/root/.vimrc', owner: root, group: root, mode: 644 }
-        - { src: 'files/vim/', dest: '/root/.vim', owner: root, group: root, mode: preserve }
-
-        - { src: 'files/bash.sh', dest: '/home/vagrant/.bash.sh', owner: vagrant, group: vagrant, mode: 644 }
-        - { src: 'files/dir_colors', dest: '/home/vagrant/.dir_colors', owner: vagrant, group: vagrant, mode: 644 }
-        - { src: 'files/vim/vimrc', dest: '/home/vagrant/.vimrc', owner: vagrant, group: vagrant, mode: 644 }
-        - { src: 'files/vim/', dest: '/home/vagrant/.vim', owner: vagrant, group: vagrant, mode: preserve }
+        - {src: 'files/bash.sh', dest: '/home/vagrant/.bash.sh',
+           owner: vagrant, group: vagrant, mode: 644}
+        - {src: 'files/dir_colors', dest: '/home/vagrant/.dir_colors',
+           owner: vagrant, group: vagrant, mode: 644}
+        - {src: 'files/vim/vimrc', dest: '/home/vagrant/.vimrc',
+           owner: vagrant, group: vagrant, mode: 644}
+        - {src: 'files/vim/', dest: '/home/vagrant/.vim',
+           owner: vagrant, group: vagrant, mode: preserve}
 
     - name: bashrc for user - vagrant
       lineinfile:
@@ -75,7 +91,7 @@
         line: source /home/vagrant/.bash.sh
 
     - name: bashrc for user - root
-      become: yes
+      become: true
       lineinfile:
         path: /root/.bashrc
         insertafter: EOF
