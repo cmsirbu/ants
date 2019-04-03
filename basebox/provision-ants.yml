@@ -42,10 +42,12 @@
 
   tasks:
 
-    - name: suppress ubuntu motd
+    - name: suppress ubuntu motd & lastlogin
       become: true
       shell: |
         chmod a-x /etc/update-motd.d/*
+        echo "PrintLastLog no" >> /etc/ssh/sshd_config
+        systemctl reload ssh.service
       args:
         warn: false
 

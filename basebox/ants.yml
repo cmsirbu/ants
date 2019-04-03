@@ -22,14 +22,6 @@ ants:
             Python supports modules and packages, which encourages program
             modularity and code reuse.
 
-        - name: ansible
-          installed_by: pip3
-          description: >-
-            Ansible is a radically simple IT automation engine that automates
-            cloud provisioning, configuration management, application
-            deployment, intra-service orchestration, and many other IT needs.
-          version: 2.7.9
-
         - name: jmespath
           installed_by: pip3
           description: JMESPath is a query language for JSON.
@@ -43,6 +35,126 @@ ants:
           description: >-
             Flask is a microframework for Python based on Werkzeug, Jinja 2 and
             good intentions.
+
+        - name: junos-eznc
+          installed_by: pip3
+          url: https://github.com/Juniper/py-junos-eznc
+          docs: "https://www.juniper.net/documentation/en_US/junos-pyez/informa\
+                tion-products/pathway-pages/junos-pyez-developer-guide.html"
+          description: >-
+            Python library for Junos automation - pyEZ
+
+        - name: netaddr
+          installed_by: pip3
+          url: https://github.com/drkjam/netaddr/
+          docs: https://netaddr.readthedocs.io/en/latest/
+          description: >-
+            A network address manipulation library for Python. IPv4, IPv6 and
+            MACs.
+
+        - name: paramiko
+          installed_by: pip3
+          url: https://github.com/paramiko/paramiko/
+          docs: http://docs.paramiko.org/
+          description: >-
+            Paramiko is a Python (2.7, 3.4+) implementation of the SSHv2
+            protocol, providing both client and server functionality.
+
+        - name: netmiko
+          installed_by: pip3
+          url: https://github.com/ktbyers/netmiko
+          docs: https://github.com/ktbyers/netmiko#tutorials
+          description: >-
+            Multi-vendor library to simplify Paramiko SSH connections to network
+            devices.
+
+        - name: pyeapi
+          installed_by: pip3
+          url: https://github.com/arista-eosplus/pyeapi
+          docs: https://pyeapi.readthedocs.io/en/master/index.html
+          description: >-
+            The Python library for Arista's eAPI command API implementation
+            provides a client API work using eAPI and communicating with EOS
+            nodes.
+
+        - name: pyiosxr
+          installed_by: pip3
+          url: https://github.com/fooelisa/pyiosxr/
+          docs: https://github.com/fooelisa/pyiosxr/#documentation
+          description: >-
+            pyIOSXR is a Python library that facilitates communication with
+            Cisco devices running IOS-XR through the XML agent.
+
+        - name: textfsm
+          installed_by: pip3
+          url: https://github.com/google/textfsm
+          docs: https://github.com/google/textfsm/wiki/TextFSM
+          description: >-
+            Python module which implements a template based state machine for
+            parsing semi-formatted text. Originally developed to allow
+            programmatic access to information returned from the command line
+            interface (CLI) of networking devices.
+
+        - name: nxapi-plumbing
+          installed_by: pip3
+          url: https://github.com/ktbyers/nxapi-plumbing
+          docs: https://github.com/ktbyers/nxapi-plumbing
+          description: >-
+            A low-level library for managing Cisco devices through NX-API using
+            JSON-RPC and XML.
+
+        - name: ncclient
+          installed_by: pip3
+          url: https://github.com/ncclient/ncclient
+          docs: http://ncclient.readthedocs.org
+          description: >-
+            ncclient is a Python library that facilitates client-side scripting
+            and application development around the NETCONF protocol.
+
+        - name: napalm
+          installed_by: pip3
+          url: https://github.com/napalm-automation/napalm
+          docs: https://napalm.readthedocs.io/
+          description: >-
+            NAPALM (Network Automation and Programmability Abstraction Layer
+            with Multivendor support) is a Python library that implements a set
+            of functions to interact with different router vendor devices using
+            a unified API.
+        # TODO add non-base napalm drivers
+
+
+    - name: ansible
+      description: Ansible Tools
+
+      packages:
+
+        - name: ansible
+          installed_by: pip3
+          url: https://github.com/ansible/ansible
+          docs: https://docs.ansible.com/ansible/latest/index.html
+          description: >-
+            Ansible is a radically simple IT automation engine that automates
+            cloud provisioning, configuration management, application
+            deployment, intra-service orchestration, and many other IT needs.
+          version: 2.7.9
+
+        - name: ansible-tower-cli
+          installed_by: pip3
+          url: https://github.com/ansible/tower-cli
+          docs: https://tower-cli.readthedocs.io/en/latest/
+          description: >-
+            tower-cli is a command line tool for Ansible Tower. It allows Tower
+            commands to be easily run from the Unix command line. It can also be
+            used as a client library for other python apps, or as a reference
+            for others developing API interactions with Tower's REST API.
+
+        - name: napalm-ansible
+          installed_by: pip3
+          url: https://github.com/napalm-automation/napalm-ansible
+          docs: https://napalm.readthedocs.io/en/latest/integrations/index.html
+          description: >-
+            Collection of ansible modules that use NAPALM to retrieve data or
+            modify configuration on networking devices.
 
 
     - name: system
