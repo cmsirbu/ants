@@ -54,6 +54,9 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "provision-ants.yml"
   end
 
+  # Installs latest docker-ce
+  config.vm.provision "docker"
+
 end
 
 
