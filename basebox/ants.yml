@@ -120,7 +120,177 @@ ants:
             with Multivendor support) is a Python library that implements a set
             of functions to interact with different router vendor devices using
             a unified API.
-        # TODO add non-base napalm drivers
+
+        - name: napalm-logs
+          installed_by: pip3
+          url: https://github.com/napalm-automation/napalm-logs
+          docs: https://napalm-logs.readthedocs.io/en/latest/
+          description: >-
+            Python library to parse syslog messages from network devices and
+            produce JSON serializable Python objects, in a vendor agnostic
+            shape. The output objects are structured following the OpenConfig
+            or IETF YANG models.
+
+        - name: ciscoconfparse
+          installed_by: pip3
+          url: https://github.com/mpenning/ciscoconfparse
+          docs: http://www.pennington.net/py/ciscoconfparse/
+          description: >-
+            ciscoconfparse is a Python library, which parses through Cisco
+            IOS-style (and other vendor) configurations.
+
+        - name: dnspython
+          installed_by: pip3
+          url: http://www.dnspython.org/
+          docs: http://www.dnspython.org/docs/1.16.0/
+          description: >-
+            dnspython is a DNS toolkit for Python. It supports almost all record
+            types. It can be used for queries, zone transfers, and dynamic
+            updates. It supports TSIG authenticated messages and EDNS0.
+
+        - name: click
+          installed_by: pip3
+          url: https://github.com/pallets/click
+          docs: https://click.palletsprojects.com/en/7.x/
+          description: >-
+            Click is a Python package for creating beautiful command line
+            interfaces in a composable way with as little code as necessary.
+            It’s the “Command Line Interface Creation Kit”. It’s highly
+            configurable but comes with sensible defaults out of the box.
+
+        # TODO wants gcc
+        # - name: psutil
+        #   installed_by: pip3
+        #   url: https://github.com/giampaolo/psutil
+        #   docs: https://psutil.readthedocs.io/en/latest/#
+        #   description: >-
+        #     psutil (process and system utilities) is a cross-platform library
+        #     for retrieving information on running processes and system
+        #     utilization (CPU, memory, disks, network, sensors) in Python.
+
+        - name: boto3
+          installed_by: pip3
+          url: https://github.com/boto/boto3
+          docs:
+            https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+          description: >-
+            Boto3 is the Amazon Web Services (AWS) Software Development Kit
+            (SDK) for Python, which allows Python developers to write software
+            that makes use of services like Amazon S3 and Amazon EC2.
+
+        - name: nornir
+          installed_by: pip3
+          url: https://github.com/nornir-automation/nornir
+          docs: https://nornir.readthedocs.io/en/stable/
+          description: >-
+            Nornir is a pure Python automation framework intented to be used
+            directly from Python. While most automation frameworks use their
+            own Domain Specific Language (DSL) which you use to describe what
+            you want to have done, Nornir lets you control everything from
+            Python.
+
+        - name: tftpy
+          installed_by: pip3
+          url: https://github.com/msoulier/tftpy
+          docs: http://tftpy.sourceforge.net/sphinx/index.html
+          description: >-
+            Python TFTP library
+
+        - name: pexpect
+          installed_by: pip3
+          url: https://github.com/pexpect/pexpect
+          docs: https://pexpect.readthedocs.io/en/stable/
+          description: >-
+            Pexpect is a pure Python module for spawning child applications;
+            controlling them; and responding to expected patterns in their
+            output.
+
+        # TODO wants gcc
+        # - name: pyats
+        #   installed_by: pip3
+        #   url: https://developer.cisco.com/pyats/
+        #   docs: https://developer.cisco.com/docs/pyats/
+        #   description: >-
+        #     Cisco pyATS, an end-to-end testing ecosystem, specializing in
+        #     data-driven and reusable testing.
+
+        - name: pyntc
+          installed_by: pip3
+          url: https://github.com/networktocode/pyntc
+          docs:
+            https://github.com/networktocode/pyntc#getting-started-with-pyntc
+          description: >-
+            pyntc is an open source multi-vendor Python library that establishes
+            a common framework for working with different network APIs & device
+            types (including IOS devices).
+
+        # TODO wants gcc (lxml)
+        # - name: pynsxv
+        #   installed_by: pip3
+        #   url: https://github.com/vmware/pynsxv
+        #   docs: https://github.com/vmware/pynsxv/tree/master/docs
+        #   description: >-
+        #     PyNSXv is a high level python based library and CLI tool to
+        #     control NSX for vSphere
+
+        - name: pyserial
+          installed_by: pip3
+          url: https://github.com/pyserial/pyserial
+          docs: https://pythonhosted.org/pyserial/
+          description: >-
+            This module encapsulates the access for the serial port. It provides
+            backends for Python running on Windows, OSX, Linux, BSD (possibly
+            any POSIX compliant system) and IronPython. The module named
+            "serial" automatically selects the appropriate backend.
+
+        - name: pysnmp
+          installed_by: pip3
+          url: https://github.com/etingof/pysnmp
+          docs: http://snmplabs.com/pysnmp/
+          description: >-
+            This is a pure-Python, open source and free implementation of
+            v1/v2c/v3 SNMP engine distributed under 2-clause BSD license.
+
+        - name: virlutils
+          installed_by: pip3
+          url: https://github.com/CiscoDevNet/virlutils
+          docs: https://github.com/CiscoDevNet/virlutils#virlutils
+          description: >-
+            A collection of utilities for interacting with Cisco VIRL
+
+        - name: pyyaml
+          installed_by: pip3
+          url: https://github.com/yaml/pyyaml
+          docs: https://pyyaml.org/wiki/PyYAMLDocumentation
+          description: >-
+            PyYAML is a YAML parser and emitter for Python.
+
+        - name: requests
+          installed_by: pip3
+          url: https://github.com/requests/requests
+          docs: http://docs.python-requests.org/en/master/
+          description: >-
+            Requests allows you to send organic, grass-fed HTTP/1.1 requests,
+            without the need for manual labor. There's no need to manually add
+            query strings to your URLs, or to form-encode your POST data.
+            Keep-alive and HTTP connection pooling are 100% automatic,
+            thanks to urllib3.
+
+        - name: xmltodict
+          installed_by: pip3
+          url: https://github.com/martinblech/xmltodict
+          docs: https://github.com/martinblech/xmltodict
+          description: >-
+            xmltodict is a Python module that makes working with XML feel
+            like you are working with JSON.
+
+        - name: pyang
+          installed_by: pip3
+          url: https://github.com/mbj4668/pyang
+          docs: https://github.com/mbj4668/pyang/wiki/Documentation
+          description: >-
+            An extensible YANG (RFC 6020/7950) validator. Provides a framework
+            for plugins that can convert YANG modules to other formats.
 
 
     - name: ansible
