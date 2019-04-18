@@ -457,15 +457,6 @@ ants:
             browser with easy keyboard shortcuts for navigation, opening
             files and running tasks.
 
-        - name: nmap
-          installed_by: apt
-          description: >-
-            Nmap
-
-        - name: nmap
-          installed_by: apt
-          description: >-
-            Nmap
 
     - name: containers
       description: Containerized Utilities
