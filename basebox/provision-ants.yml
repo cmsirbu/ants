@@ -42,13 +42,13 @@
     - name: install python3 packages via pip3
       pip:
         name: "{{ pip3_list }}"
-        extra_args: --user
+        extra_args: --user -U
         executable: pip3
 
     - debug:
         msg: "fetching docker images: {{ docker_image_list }}"
 
-    - name: install python3 packages via docker
+    - name: pull docker images locally
       docker_image:
         name: "{{ item }}"
         tag: latest
@@ -57,7 +57,7 @@
     - debug:
         msg: "starting docker containers: {{ docker_start_list }}"
 
-    - name: install python3 packages via docker
+    - name: start docker containers
       docker_container:
         name: "{{ item | replace('/', '_') }}"
         image: "{{ item.name }}:{{ item.version }}:"
