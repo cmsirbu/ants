@@ -36,6 +36,13 @@ ants:
             Flask is a microframework for Python based on Werkzeug, Jinja 2 and
             good intentions.
 
+        - name: docker
+          installed_by: pip3
+          url: https://github.com/docker/docker-py
+          docs: https://docker-py.readthedocs.io/en/stable/
+          description: >-
+            A Python library for the Docker Engine API.
+
         - name: junos-eznc
           installed_by: pip3
           url: https://github.com/Juniper/py-junos-eznc
@@ -300,13 +307,13 @@ ants:
 
         - name: ansible
           installed_by: pip3
+          version: 2.7.9
           url: https://github.com/ansible/ansible
           docs: https://docs.ansible.com/ansible/latest/index.html
           description: >-
             Ansible is a radically simple IT automation engine that automates
             cloud provisioning, configuration management, application
             deployment, intra-service orchestration, and many other IT needs.
-          version: 2.7.9
 
         - name: ansible-tower-cli
           installed_by: pip3
@@ -380,3 +387,116 @@ ants:
           installed_by: apt
           description: >-
             Telnet, what else?
+
+        - name: htop
+          installed_by: apt
+          description: >-
+            Interactive process viewer for Unix.
+
+        - name: openssh-client
+          installed_by: apt
+          description: >-
+            SSH client.
+
+        - name: snmp
+          installed_by: apt
+          description: >-
+            The Net-SNMP applications are a collection of command line clients
+            for issuing SNMP requests to agents.
+
+        - name: nmap
+          installed_by: apt
+          description: >-
+            Nmap is a utility for network exploration or security auditing.
+
+        - name: netcat-openbsd
+          installed_by: apt
+          description: >-
+            A simple Unix utility which reads and writes data across network
+            connections using TCP or UDP protocol.
+            This package contains the OpenBSD rewrite of netcat, including
+            support for IPv6, proxies, and Unix sockets.
+
+        - name: iputils-arping
+          installed_by: apt
+          description: >-
+            Tool to send ICMP echo requests to an ARP address
+
+        - name: iputils-ping
+          installed_by: apt
+          description: >-
+            Tools to test the reachability of network hosts
+
+        - name: iputils-tracepath
+          installed_by: apt
+          description: >-
+            Tools to trace the network path to a remote host
+
+        - name: net-tools
+          installed_by: apt
+          description: >-
+            This package includes the important tools for controlling the
+            network subsystem of the Linux kernel.
+
+        - name: fping
+          installed_by: apt
+          description: >-
+            fping is a ping like program which uses the Internet Control
+            Message Protocol (ICMP) echo request to determine if a target
+            host is responding.  fping differs from ping in that you can
+            specify any number of targets on the command line, or specify
+            a file containing the lists of targets to ping.  Instead of
+            sending to one target until it times out or replies, fping will
+            send out a ping packet and move on to the next target in a
+            round-robin fashion.
+
+        - name: nnn
+          installed_by: apt
+          description: >-
+            nnn is a fork of noice, a blazing-fast lightweight terminal file
+            browser with easy keyboard shortcuts for navigation, opening
+            files and running tasks.
+
+        - name: nmap
+          installed_by: apt
+          description: >-
+            Nmap
+
+        - name: nmap
+          installed_by: apt
+          description: >-
+            Nmap
+
+    - name: containers
+      description: Containerized Utilities
+
+      packages:
+
+        - name: docker-ce
+          installed_by: vagrant
+          description: >-
+            Docker Engine.
+
+        - name: ciscotestautomation/pyats
+          installed_by: docker
+          version: latest
+          autostart: false
+          url: https://developer.cisco.com/pyats/
+          docs: https://developer.cisco.com/docs/pyats/
+          description: >-
+            Cisco pyATS, an end-to-end testing ecosystem, specializing in
+            data-driven and reusable testing.
+
+        # Container seems broken, doesn't render templates
+        # - name: cidrblock/td4a
+        #   installed_by: docker
+        #   version: latest
+        #   autostart: true
+        #   host_port: 8001
+        #   container_port: 5000
+        #   description: >-
+        #     Template Designer for Automation. TD4A is a visual design aid for
+        #     building and testing jinja2 templates. It will combine data in
+        #     yaml format with a jinja2 template and render the output.
+        #     All jinja2 filters are supported along with the filter plugins
+        #     from Ansible version 2.4.1.0.

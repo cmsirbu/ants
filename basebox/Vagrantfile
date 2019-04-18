@@ -48,14 +48,14 @@ Vagrant.configure("2") do |config|
     pip3 install -U --user "ansible>=2.7,<2.8" jmespath
   SHELL
 
+  # Installs latest docker-ce
+  config.vm.provision "docker"
+
   # User is "vagrant". Runs ansible inside of the VM on itself.
   config.vm.provision "ansible_local" do |ansible|
     ansible.install = false
     ansible.playbook = "provision-ants.yml"
   end
-
-  # Installs latest docker-ce
-  config.vm.provision "docker"
 
 end
 

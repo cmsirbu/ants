@@ -13,6 +13,15 @@
     - pip3_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`pip3`][].name')
                  }}"
+    - docker_image_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`docker`][].name')
+                 }}"
+    - docker_start_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`docker` &&
+                    autostart][]')
+                 }}"
+    - ansible_python_interpreter: /usr/bin/python3
+
 
   tasks:
 
@@ -36,6 +45,24 @@
         extra_args: --user
         executable: pip3
 
+    - debug:
+        msg: "fetching docker images: {{ docker_image_list }}"
+
+    - name: install python3 packages via docker
+      docker_image:
+        name: "{{ item }}"
+        tag: latest
+      loop: "{{ docker_image_list | list }}"
+
+    - debug:
+        msg: "starting docker containers: {{ docker_start_list }}"
+
+    - name: install python3 packages via docker
+      docker_container:
+        name: "{{ item | replace('/', '_') }}"
+        image: "{{ item.name }}:{{ item.version }}:"
+        published_ports: "{{ item.host_port }}:{{ item.container_port }}"
+      loop: "{{ docker_start_list | list }}"
 
 - name: SYSTEM TWEAKS
   hosts: all
