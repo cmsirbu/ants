@@ -14,9 +14,14 @@ Welcome to the Awesome Networking Tools Sandbox!
 
 - Build instructions, source code, issues: https://github.com/cmsirbu/ants
 - Disclaimer: https://github.com/cmsirbu/ants#disclaimer
+- Bash and vim are preconfigured with sensible defaults + a few improvements.
+
+!!! Python3 is the default (through aliases for now). If you **really** need
+!!!   2.7 you need to install stuff explicitly using pip2 and python2.
+!!! ANTS packages are installed under the "vagrant" user (pip3 install --user)
 
 Getting started:
 
-- Check out the examples in /ants/examples
-- Run your code from the host folder /vagrant
+- Run your code from the host machine shared folder /vagrant
+- Check out some examples in /ants/examples (WIP)
 

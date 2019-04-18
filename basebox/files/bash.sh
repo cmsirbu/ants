@@ -144,3 +144,9 @@ alias ga="git add "
 alias gd="git diff"
 alias gpl="git pull origin master --tags"
 alias gps="git push origin master --tags"
+
+# I **think** this shouldn't break anything... python2 is going away 
+# so we need to start defaulting to python3.
+# DO NOT CHANGE FOR ROOT OR AT THE SYSTEM LEVEL!
+alias python="python3"
+alias pip="pip3"
