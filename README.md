@@ -2,12 +2,14 @@
 
 # ANTS: Awesome Networking Tools Sandbox
 
-**ANTS** is a set of scripts that build a sandbox VM preloaded with tools and libraries useful for network programming and automation. It primarily leverages the power of [vagrant](https://www.vagrantup.com/) to quickly start (and easily rebuild from scratch) a sandbox for you to develop and experiment without cluttering your host machine.
+**ANTS** is a sandbox VM (Virtual Machine) preloaded with tools and libraries useful for network programming and automation. It includes `ansible`, `python3`, `docker` and customized bash/vim plus [many networking related libraries](#wondering-whats-installed) for your enjoyment.
+
+It primarily leverages the power of [vagrant](https://www.vagrantup.com/) to quickly start (and easily rebuild from scratch) a sandbox for you to develop and experiment without cluttering your host machine.
 
 ## Quick start - with Vagrant
 
 1. Install the prerequisites: [vagrant](https://www.vagrantup.com/downloads.html) and [virtualbox](https://www.virtualbox.org/wiki/Downloads).
-2. Save the [Vagrantfile](Vagrantfile) somewhere on your machine.
+2. Right-click -> Save the [Vagrantfile](https://raw.githubusercontent.com/cmsirbu/ants/master/Vagrantfile) somewhere on your machine.
 3. Run `vagrant up` in the folder where you saved the `Vagrantfile`
 4. Enjoy your sandbox -> `vagrant ssh`!
 
