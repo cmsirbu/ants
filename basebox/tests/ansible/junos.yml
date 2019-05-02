@@ -1,0 +1,16 @@
+---
+
+- name: TEST JUNIPER MODULES FUNCTIONALITY
+  hosts: juniper
+
+  tasks:
+
+    - name: get facts
+      junos_facts:
+
+    - name: check version and model
+      assert:
+        that:
+          - "version == ansible_net_version"
+          - "model == ansible_net_model | upper"
+

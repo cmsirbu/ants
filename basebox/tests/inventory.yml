@@ -1,0 +1,27 @@
+---
+all:
+  vars:
+    ansible_ssh_private_key_file: /vagrant/basebox/tests/insecure_private_key
+  children:
+    juniper:
+      vars:
+        ansible_connection: netconf
+        ansible_network_os: junos
+      children:
+        vMX:
+        vQFX:
+          hosts:
+            sw1:
+              ansible_host: 10.250.0.111
+              ansible_user: vagrant
+              version: 17.4R1.16
+              model: VQFX-10000
+    cisco:
+      children:
+        iosxe:
+        nxos:
+    arista:
+      children:
+        vEOS:
+        cEOS:
+...
