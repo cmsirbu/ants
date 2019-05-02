@@ -4,9 +4,9 @@ This folder contains everything needed to build the ANTS base VM with `vagrant`.
 
 To start the build, simply run `vagrant up` and enjoy. It will take some time (especially depending on the speed of your connection), be patient.
 
-## Testing basic functionality
+## Validating basic functionality
 
-The `tests` folder contains a bunch of basic tests written to ensure that libraries are not just installed, but also actually work. Some of the tests require virtual network devices (e.g. vQFX for the pyEZ tests) as defined in the [tests/inventory.yml](tests/inventory.yml) file.
+The [tests](tests) folder contains a bunch of basic tests written to ensure that libraries are not just installed, but also actually work. Some of the tests require virtual network devices (e.g. vQFX for the pyEZ tests) as defined in the [tests/inventory.yml](tests/inventory.yml) file.
 
 To start the needed virtual network devices a helpful [Vagrantfile](../examples/lab/Vagrantfile) is provided in the examples - be warned, to boot all of them you need a fair bit of RAM!
 
@@ -15,7 +15,7 @@ And, finally, run the test suite:
 ```
 # Connect to the machine
 vagrant ssh
-cd /vagrant/tests
+cd /vagrant/basebox/tests
 pytest
 ```
 
