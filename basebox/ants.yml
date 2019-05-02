@@ -11,6 +11,8 @@ ants:
 
         - name: python3
           installed_by: apt
+          url: https://www.python.org/
+          docs: https://docs.python.org/3/
           description: >-
             Python is an interpreted, object-oriented, high-level programming
             language with dynamic semantics. Its high-level built in data
@@ -24,14 +26,20 @@ ants:
 
         - name: jmespath
           installed_by: pip3
+          url: http://jmespath.org/
+          docs: https://github.com/jmespath/jmespath.py
           description: JMESPath is a query language for JSON.
 
         - name: jinja2
           installed_by: pip3
+          url: http://jinja.pocoo.org/
+          docs: http://jinja.pocoo.org/docs/latest/
           description: Jinja2 is a templating engine for Python.
 
         - name: flask
           installed_by: pip3
+          url: http://flask.pocoo.org/
+          docs: http://flask.pocoo.org/docs/1.0/
           description: >-
             Flask is a microframework for Python based on Werkzeug, Jinja 2 and
             good intentions.
@@ -298,6 +306,14 @@ ants:
           description: >-
             An extensible YANG (RFC 6020/7950) validator. Provides a framework
             for plugins that can convert YANG modules to other formats.
+
+        - name: pytest
+          installed_by: pip3
+          url: https://github.com/pytest-dev/pytest/
+          docs: https://docs.pytest.org/en/latest/
+          description: >-
+            pytest is a mature full-featured Python testing tool that helps
+            you write better programs.
 
 
     - name: ansible

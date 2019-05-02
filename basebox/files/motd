@@ -19,9 +19,10 @@ Welcome to the Awesome Networking Tools Sandbox!
 !!! Python3 is the default (through aliases for now). If you **really** need
 !!!   2.7 you need to install stuff explicitly using pip2 and python2.
 !!! ANTS packages are installed under the "vagrant" user (pip3 install --user)
+!!!   which you should use exclusively - root usage is *strongly* discouraged.
 
 Getting started:
 
 - Run your code from the host machine shared folder /vagrant
-- Check out some examples in /ants/examples (WIP)
+- Check out some examples in /ants/examples (WIP/Contribute?)
 
