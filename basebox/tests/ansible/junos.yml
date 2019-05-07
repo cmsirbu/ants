@@ -13,4 +13,3 @@
         that:
           - "version == ansible_net_version"
           - "model == ansible_net_model | upper"
-
