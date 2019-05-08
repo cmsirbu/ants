@@ -1,0 +1,43 @@
+---
+- name: PROVISION N9KV INTERFACES AND LLDP
+  gather_facts: false
+  hosts: all
+  connection: network_cli
+
+  vars:
+    ansible_network_os: nxos
+
+  tasks:
+    - name: Because nxos_l3_interface is broken (it should no switchport)
+      nxos_config:
+        lines:
+          - no switchport
+          - no shutdown
+        parents:
+          - "interface {{ item }}"
+      loop:
+        - Ethernet1/1
+        - Ethernet1/2
+        - Ethernet1/3
+
+    - name: Set interface IPv4 address
+      nxos_l3_interface:
+        aggregate:
+          - { name: "Ethernet1/1", ipv4: "10.250.0.113/24" }
+          - { name: "Ethernet1/2", ipv4: "10.2.0.113/24" }
+          - { name: "Ethernet1/3", ipv4: "10.3.0.113/24" }
+
+    - name: Enable nxapi
+      nxos_nxapi:
+        state: present
+        http: true
+        http_port: 80
+
+    - name: Enable LLDP
+      nxos_feature:
+        feature: lldp
+        state: enabled
+
+    - name: save config
+      nxos_config:
+        save_when: always

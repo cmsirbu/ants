@@ -1,0 +1,146 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# https://docs.vagrantup.com
+
+## Use as a unique ID in various dynamic names later
+UUID = "ANTS"
+
+Vagrant.configure('2') do |config|
+
+    ################################################
+    ## Juniper vQFX Routing Engine                ##
+    ## https://github.com/Juniper/vqfx10k-vagrant ##
+    ################################################
+    config.vm.define 'vqfx' do |vqfx|
+        # The name you will reference in vagrant commands
+        vqfx.vm.hostname = 'vqfx'
+        # The box to run
+        vqfx.vm.box = 'juniper/vqfx10k-re'
+        # Use default key to connect ~/.vagrant.d/insecure_private_key
+        vqfx.ssh.insert_key = false
+        # Set a unique base MAC address for interfaces
+        vqfx.vm.base_mac = '0800276CEEAA'
+        # No VMtools installed
+        vqfx.vm.synced_folder '.', '/vagrant', disabled: true
+
+        # Port forwarding from host
+        vqfx.vm.network 'forwarded_port', guest: 22, host: 12001, id: 'ssh'
+        vqfx.vm.network 'forwarded_port', guest: 443, host: 12441, id: 'https'
+
+        # Internal ports (em1, em2)
+        vqfx.vm.network 'private_network', auto_config: false,
+            nic_type: '82540EM', virtualbox__intnet: "#{UUID}_vqfx_internal"
+        vqfx.vm.network 'private_network', auto_config: false,
+            nic_type: '82540EM', intnet: "#{UUID}_reserved-bridge"
+
+        # ANTS Management em3 - vboxnet0
+        vqfx.vm.network 'private_network', auto_config: false,
+            nic_type: '82540EM', name: 'vboxnet0',
+            ip: '10.250.0.111', netmask: 24
+
+        # Infra ports (em4, em5)
+        (1..2).each do |seg_id|
+            vqfx.vm.network 'private_network', auto_config: false,
+                nic_type: '82540EM', intnet: "#{UUID}_segment_#{seg_id}"
+        end
+
+        vqfx.vm.provision 'ansible' do |ansible|
+            ansible.playbook = 'vqfx-provision.yml'
+        end
+    end
+
+    ################################################
+    ## Juniper vQFX Packet Forwarding Engine      ##
+    ## https://github.com/Juniper/vqfx10k-vagrant ##
+    ################################################
+    config.vm.define 'vqfx_pfe' do |vqfx_pfe|
+        # The box to run
+        vqfx_pfe.vm.box = 'juniper/vqfx10k-pfe'
+        # Use default key to connect ~/.vagrant.d/insecure_private_key
+        vqfx_pfe.ssh.insert_key = false
+        # No VMtools installed
+        vqfx_pfe.vm.synced_folder '.', '/vagrant', disabled: true
+
+        # Internal Link to Routing Engine
+        vqfx_pfe.vm.network 'private_network', auto_config: false,
+            nic_type: '82540EM', virtualbox__intnet: "#{UUID}_vqfx_internal"
+    end
+
+    ################################################
+    ## Arista vEOS                                ##
+    ################################################
+    config.vm.define 'veos' do |veos|
+        # The name you will reference in vagrant commands
+        veos.vm.hostname = 'veos'
+        # The box to run - you need to download it manually
+        # and add it locally first !!!
+        veos.vm.box = 'arista/vEOS-lab-4.21.1.1F'
+        # Use default key to connect ~/.vagrant.d/insecure_private_key
+        veos.ssh.insert_key = false
+        # Set a unique base MAC address for interfaces
+        veos.vm.base_mac = '0800276DEEAA'
+        # No VMtools installed
+        veos.vm.synced_folder '.', '/vagrant', disabled: true
+
+        # Port forwarding from host
+        veos.vm.network 'forwarded_port', guest: 22, host: 12002, id: 'ssh'
+        veos.vm.network 'forwarded_port', guest: 443, host: 12442, id: 'https'
+
+        # ANTS Management em3 - vboxnet0
+        veos.vm.network 'private_network', auto_config: false,
+            name: 'vboxnet0', ip: '10.250.0.112', netmask: 24
+
+        # Infra ports (em4, em5)
+        (1..2).each do |seg_id|
+            veos.vm.network 'private_network', auto_config: false,
+                intnet: "#{UUID}_segment_#{seg_id}"
+        end
+
+        veos.vm.provision 'shell', path: 'veos-provision.sh'
+    end
+
+    ################################################
+    ## Cisco Nexus9000v                           ##
+    ################################################
+    config.vm.define 'n9kv' do |n9kv|
+        # The name you will reference in vagrant commands
+        n9kv.vm.hostname = 'n9kv'
+        # The box to run - you need to download it manually
+        # and add it locally first !!!
+        n9kv.vm.box = 'cisco/n9000v-703I76'
+        # Use default key to connect ~/.vagrant.d/insecure_private_key
+        n9kv.ssh.insert_key = false
+        # Set a unique base MAC address for interfaces
+        n9kv.vm.base_mac = '0800276EEEAA'
+        # No VMtools installed
+        n9kv.vm.synced_folder '.', '/vagrant', disabled: true
+
+        # Port forwarding from host
+        n9kv.vm.network 'forwarded_port', guest: 22, host: 12003, id: 'ssh'
+        n9kv.vm.network 'forwarded_port', guest: 80, host: 12443, id: 'https'
+
+        # ANTS Management eth1/1 - vboxnet0
+        n9kv.vm.network 'private_network', auto_config: false,
+            name: 'vboxnet0', ip: '10.250.0.113', netmask: 24
+
+        # Infra ports (eth1/2, eth1/3)
+        (1..2).each do |seg_id|
+            n9kv.vm.network 'private_network', auto_config: false,
+                intnet: "#{UUID}_segment_#{seg_id}"
+        end
+
+        n9kv.vm.provider 'virtualbox' do |v|
+            v.memory = "4096"
+            v.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
+            v.customize ['modifyvm', :id, '--nicpromisc3', 'allow-all']
+            v.customize ['modifyvm', :id, '--nicpromisc4', 'allow-all']
+        end
+
+        # Won't execute automatically... once vagrant errors out
+        # that it can't connect to the machine, run manually
+        # vagrant provision n9kv
+        n9kv.vm.provision 'ansible' do |ansible|
+            ansible.playbook = 'n9kv-provision.yml'
+        end
+    end
+end

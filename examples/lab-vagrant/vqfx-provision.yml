@@ -1,0 +1,21 @@
+---
+- name: PROVISION VQFX INTERFACES AND LLDP
+  gather_facts: false
+  hosts: all
+  connection: netconf
+
+  vars:
+    ansible_network_os: junos
+
+  tasks:
+    - name: Set interface IPv4 address
+      junos_l3_interface:
+        aggregate:
+          - { name: "em3", ipv4: "10.250.0.111/24" }
+          - { name: "em4", ipv4: "10.2.0.111/24" }
+          - { name: "em5", ipv4: "10.3.0.111/24" }
+
+    - name: Enable LLDP service
+      junos_lldp_interface:
+        name: all
+        state: enabled
