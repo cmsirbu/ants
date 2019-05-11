@@ -23,9 +23,9 @@
     - name: Set interface IPv4 address
       nxos_l3_interface:
         aggregate:
-          - { name: "Ethernet1/1", ipv4: "10.250.0.113/24" }
-          - { name: "Ethernet1/2", ipv4: "10.2.0.113/24" }
-          - { name: "Ethernet1/3", ipv4: "10.3.0.113/24" }
+          - {name: "Ethernet1/1", ipv4: "10.250.0.113/24"}
+          - {name: "Ethernet1/2", ipv4: "10.2.0.113/24"}
+          - {name: "Ethernet1/3", ipv4: "10.3.0.113/24"}
 
     - name: Enable nxapi
       nxos_nxapi:

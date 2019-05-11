@@ -4,7 +4,6 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "cmsirbu/ants"
-  config.vm.box_version = "0.0.1"
 
   # private management network for devices to connect to (assign .1 to host machine)
   config.vm.network 'private_network', ip: "10.250.0.11", netmask: 24, name: "vboxnet0"
