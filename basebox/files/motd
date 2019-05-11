@@ -20,9 +20,11 @@ Welcome to the Awesome Networking Tools Sandbox!
 !!!   2.7 you need to install stuff explicitly using pip2 and python2.
 !!! ANTS packages are installed under the "vagrant" user (pip3 install --user)
 !!!   which you should use exclusively - root usage is *strongly* discouraged.
+!!! That said, if you break anything, you can easily start from scratch
+!!!   (vagrant destroy -> vagrant up) so go nuts, experiment and have fun :)
 
 Getting started:
 
-- Run your code from the host machine shared folder /vagrant
+- Run your code from the host machine shared folder /vagrant (persistent folder)
 - Check out some examples in /ants/examples (WIP/Contribute?)
 
