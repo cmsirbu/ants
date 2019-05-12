@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
     apt-get install --yes software-properties-common apt-transport-https
 
     # Python3 + PIP3
-    apt-get install python3-pip --no-install-recommends --yes
+    apt-get install python3-pip python3-venv --no-install-recommends --yes
 
     # Python2 + PIP2
     apt-get install python-minimal python-pip python-virtualenv python-setuptools --no-install-recommends --yes
@@ -36,10 +36,10 @@ Vagrant.configure("2") do |config|
   # These MUST be done in a separate shell as they change the pip path.
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     # Python3 + PIP3 + ansible
-    pip3 install -U --user pip setuptools
+    pip3 install -U --user pip setuptools wheel
 
     # Python2 + PIP2
-    pip2 install -U --user pip setuptools
+    pip2 install -U --user pip setuptools wheel
   SHELL
 
   # User is "vagrant".

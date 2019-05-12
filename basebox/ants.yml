@@ -24,6 +24,15 @@ ants:
             Python supports modules and packages, which encourages program
             modularity and code reuse.
 
+        - name: python3-dev
+          installed_by: apt
+          url: https://www.python.org/
+          docs: https://docs.python.org/3/
+          description:
+            Header files, a static library and development tools for building
+            Python modules, extending the Python interpreter or embedding Python
+            in applications.
+
         - name: jmespath
           installed_by: pip3
           url: http://jmespath.org/
@@ -193,6 +202,14 @@ ants:
             (SDK) for Python, which allows Python developers to write software
             that makes use of services like Amazon S3 and Amazon EC2.
 
+        - name: colorama
+          installed_by: pip3
+          version: <0.5.0,>=0.4.1
+          url: https://github.com/tartley/colorama
+          docs: https://github.com/tartley/colorama
+          description: >-
+            Simple cross-platform colored terminal text in Python
+
         - name: nornir
           installed_by: pip3
           url: https://github.com/nornir-automation/nornir
@@ -280,6 +297,14 @@ ants:
           description: >-
             PyYAML is a YAML parser and emitter for Python.
 
+        - name: urllib3
+          installed_by: pip3
+          version: "<1.25,>=1.20"
+          url: https://github.com/urllib3/urllib3
+          docs: https://urllib3.readthedocs.io/en/latest/
+          description: >-
+            urllib3 is a powerful, sanity-friendly HTTP client for Python.
+
         - name: requests
           installed_by: pip3
           url: https://github.com/requests/requests
@@ -323,7 +348,7 @@ ants:
 
         - name: ansible
           installed_by: pip3
-          version: 2.7.9
+          version: ">=2.7,<2.8"
           url: https://github.com/ansible/ansible
           docs: https://docs.ansible.com/ansible/latest/index.html
           description: >-
@@ -378,6 +403,16 @@ ants:
           installed_by: apt
           description: >-
             Vi IMproved - enhanced vi editor
+
+        - name: make
+          installed_by: apt
+          description: >-
+            GNU Make.
+
+        - name: tree
+          installed_by: apt
+          description: >-
+            Tree is a recursive directory listing command.
 
         - name: curl
           installed_by: apt

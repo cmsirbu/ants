@@ -11,7 +11,7 @@
                     'package_groups[].packages[?installed_by==`apt`][].name')
                  }}"
     - pip3_list: "{{ ants | json_query(
-                    'package_groups[].packages[?installed_by==`pip3`][].name')
+                    'package_groups[].packages[?installed_by==`pip3`][]')
                  }}"
     - docker_image_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`docker`][].name')
@@ -34,16 +34,25 @@
         name: "{{ apt_list }}"
         state: latest
         update_cache: true
+        install_recommends: false
         cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
 
     - debug:
-        msg: "installing via pip3: {{ pip3_list }}"
+        msg: "installing via pip3: {{ pip3_list | json_query('[].name') }}"
+
+    - name: generate requirements.txt
+      template:
+        src: files/requirements.j2
+        dest: /tmp/requirements.txt
 
     - name: install python3 packages via pip3
       pip:
-        name: "{{ pip3_list }}"
+        requirements: "/tmp/requirements.txt"
         extra_args: --user -U
         executable: pip3
+
+    - name: validate all pip3 dependencies are in order
+      shell: pip3 check
 
     - debug:
         msg: "fetching docker images: {{ docker_image_list }}"
@@ -82,6 +91,16 @@
       become: true
       hostname:
         name: ants
+
+    - name: create /ants
+      become: true
+      file:
+        path: /ants
+        state: directory
+        mode: 0755
+        owner: vagrant
+        group: vagrant
+
 
     - name: copy various files for root and vagrant
       become: true

@@ -1,0 +1,4 @@
+{% for pkg in pip3_list %}
+{{ pkg.name }}{% if pkg.version | default(None) %} {{ pkg.version }}{% endif %}
+
+{% endfor %}

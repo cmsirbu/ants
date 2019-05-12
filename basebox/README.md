@@ -15,8 +15,9 @@ And, finally, run the test suite:
 ```
 # Connect to the machine
 vagrant ssh
-cd /vagrant/basebox/tests
-pytest
+cd /vagrant/tests
+make clean
+make
 ```
 
 ## Packaging the box
