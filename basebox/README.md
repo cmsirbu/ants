@@ -24,20 +24,21 @@ make
 
 Once the provisioning is done, to package the running VM as a new box, follow these steps:
 
-```
+```sh
 vagrant ssh
 # Clean up the caches and zeroize free space
 sudo apt-get clean
+rm -r /home/vagrant/.cache/pip
 sudo dd if=/dev/zero of=/EMPTY bs=1M
 sudo rm -f /EMPTY
 cat /dev/null > ~/.bash_history && history -c && exit
 
 # Repackage the box from the current VM
-vagrant package --output ants-basebox-1804.box 
+vagrant package --output ants-basebox-1804.box
 
 # Optionally, for local usage
 # If a previous version exists, delete it
 vagrant box remove ants-basebox-1804
 # Add the new box to vagrant
-vagrant box add ants-basebox-1804 ants-basebox-1804.box 
+vagrant box add ants-basebox-1804 ants-basebox-1804.box
 ```

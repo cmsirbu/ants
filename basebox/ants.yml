@@ -182,15 +182,14 @@ ants:
             It’s the “Command Line Interface Creation Kit”. It’s highly
             configurable but comes with sensible defaults out of the box.
 
-        # TODO wants gcc
-        # - name: psutil
-        #   installed_by: pip3
-        #   url: https://github.com/giampaolo/psutil
-        #   docs: https://psutil.readthedocs.io/en/latest/#
-        #   description: >-
-        #     psutil (process and system utilities) is a cross-platform library
-        #     for retrieving information on running processes and system
-        #     utilization (CPU, memory, disks, network, sensors) in Python.
+        - name: psutil
+          installed_by: pip3
+          url: https://github.com/giampaolo/psutil
+          docs: https://psutil.readthedocs.io/en/latest/#
+          description: >-
+            psutil (process and system utilities) is a cross-platform library
+            for retrieving information on running processes and system
+            utilization (CPU, memory, disks, network, sensors) in Python.
 
         - name: boto3
           installed_by: pip3
@@ -204,7 +203,7 @@ ants:
 
         - name: colorama
           installed_by: pip3
-          version: <0.5.0,>=0.4.1
+          version: "<0.5.0,>=0.4.1"
           url: https://github.com/tartley/colorama
           docs: https://github.com/tartley/colorama
           description: >-
@@ -237,14 +236,13 @@ ants:
             controlling them; and responding to expected patterns in their
             output.
 
-        # TODO wants gcc
-        # - name: pyats
-        #   installed_by: pip3
-        #   url: https://developer.cisco.com/pyats/
-        #   docs: https://developer.cisco.com/docs/pyats/
-        #   description: >-
-        #     Cisco pyATS, an end-to-end testing ecosystem, specializing in
-        #     data-driven and reusable testing.
+        - name: pyats
+          installed_by: pip3
+          url: https://developer.cisco.com/pyats/
+          docs: https://developer.cisco.com/docs/pyats/
+          description: >-
+            Cisco pyATS, an end-to-end testing ecosystem, specializing in
+            data-driven and reusable testing.
 
         - name: pyntc
           installed_by: pip3
@@ -255,15 +253,6 @@ ants:
             pyntc is an open source multi-vendor Python library that establishes
             a common framework for working with different network APIs & device
             types (including IOS devices).
-
-        # TODO wants gcc (lxml)
-        # - name: pynsxv
-        #   installed_by: pip3
-        #   url: https://github.com/vmware/pynsxv
-        #   docs: https://github.com/vmware/pynsxv/tree/master/docs
-        #   description: >-
-        #     PyNSXv is a high level python based library and CLI tool to
-        #     control NSX for vSphere
 
         - name: pyserial
           installed_by: pip3
@@ -292,6 +281,7 @@ ants:
 
         - name: pyyaml
           installed_by: pip3
+          version: "<5.2,>=5.1"
           url: https://github.com/yaml/pyyaml
           docs: https://pyyaml.org/wiki/PyYAMLDocumentation
           description: >-
@@ -508,6 +498,37 @@ ants:
             browser with easy keyboard shortcuts for navigation, opening
             files and running tasks.
 
+        - name: build-essential
+          installed_by: apt
+          description: >-
+            Dependencies for building/compiling programs.
+
+        - name: libxml2-dev
+          installed_by: apt
+          description: >-
+            libxml2 developement files.
+
+        - name: libxml2-tools
+          installed_by: apt
+          description: >-
+            This package provides xmllint, a tool for validating and
+            reformatting XML documents, and xmlcatalog, a tool to parse
+            and manipulate XML or SGML catalog files.
+
+        - name: libxslt1-dev
+          installed_by: apt
+          description: >-
+            XSLT 1.0 processing library - development kit
+
+        - name: libffi-dev
+          installed_by: apt
+          description: >-
+            Foreign Function Interface library (development files)
+
+        - name: libssl-dev
+          installed_by: apt
+          description: >-
+            Secure Sockets Layer toolkit - development files
 
     - name: containers
       description: Containerized Utilities
@@ -518,16 +539,6 @@ ants:
           installed_by: vagrant
           description: >-
             Docker Engine.
-
-        - name: ciscotestautomation/pyats
-          installed_by: docker
-          version: latest
-          autostart: false
-          url: https://developer.cisco.com/pyats/
-          docs: https://developer.cisco.com/docs/pyats/
-          description: >-
-            Cisco pyATS, an end-to-end testing ecosystem, specializing in
-            data-driven and reusable testing.
 
         # Container seems broken, doesn't render templates
         # - name: cidrblock/td4a
