@@ -330,6 +330,15 @@ ants:
             pytest is a mature full-featured Python testing tool that helps
             you write better programs.
 
+        - name: cryptography
+          installed_by: pip3
+          version: ">=2.6.1"
+          url: https://github.com/pytest-dev/pytest/
+          docs: https://docs.pytest.org/en/latest/
+          description: >-
+            cryptography includes both high level recipes and low level
+            interfaces to common cryptographic algorithms such as
+            symmetric ciphers, message digests, and key derivation functions.
 
     - name: ansible
       description: Ansible Tools
@@ -364,6 +373,13 @@ ants:
             Collection of ansible modules that use NAPALM to retrieve data or
             modify configuration on networking devices.
 
+        - name: ntc-ansible
+          installed_by: git
+          dest: /home/vagrant/.ansible/plugins/modules/ntc-ansible
+          url: https://github.com/networktocode/ntc-ansible
+          docs: https://github.com/networktocode/ntc-ansible
+          description: >-
+            Multi-vendor Ansible Modules for Network Automation.
 
     - name: system
       description: System Utilities
@@ -508,7 +524,7 @@ ants:
           description: >-
             libxml2 developement files.
 
-        - name: libxml2-tools
+        - name: libxml2-utils
           installed_by: apt
           description: >-
             This package provides xmllint, a tool for validating and

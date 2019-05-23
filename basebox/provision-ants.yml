@@ -1,82 +1,35 @@
 ---
 
-- name: INSTALL PACKAGES
-  hosts: all
-
-  vars_files:
-    - ants.yml
-
-  vars:
-    - apt_list: "{{ ants | json_query(
-                    'package_groups[].packages[?installed_by==`apt`][].name')
-                 }}"
-    - pip3_list: "{{ ants | json_query(
-                    'package_groups[].packages[?installed_by==`pip3`][]')
-                 }}"
-    - docker_image_list: "{{ ants | json_query(
-                    'package_groups[].packages[?installed_by==`docker`][].name')
-                 }}"
-    - docker_start_list: "{{ ants | json_query(
-                    'package_groups[].packages[?installed_by==`docker` &&
-                    autostart][]')
-                 }}"
-    - ansible_python_interpreter: /usr/bin/python3
-
-
-  tasks:
-
-    - debug:
-        msg: "installing via apt: {{ apt_list }}"
-
-    - name: install packages via apt
-      become: true
-      apt:
-        name: "{{ apt_list }}"
-        state: latest
-        update_cache: true
-        install_recommends: false
-        cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
-
-    - debug:
-        msg: "installing via pip3: {{ pip3_list | json_query('[].name') }}"
-
-    - name: generate requirements.txt
-      template:
-        src: files/requirements.j2
-        dest: /tmp/requirements.txt
-
-    - name: install python3 packages via pip3
-      pip:
-        requirements: "/tmp/requirements.txt"
-        extra_args: --user -U
-        executable: pip3
-
-    - name: validate all pip3 dependencies are in order
-      shell: pip3 check
-
-    - debug:
-        msg: "fetching docker images: {{ docker_image_list }}"
-
-    - name: pull docker images locally
-      docker_image:
-        name: "{{ item }}"
-        tag: latest
-      loop: "{{ docker_image_list | list }}"
-
-    - debug:
-        msg: "starting docker containers: {{ docker_start_list }}"
-
-    - name: start docker containers
-      docker_container:
-        name: "{{ item | replace('/', '_') }}"
-        image: "{{ item.name }}:{{ item.version }}:"
-        published_ports: "{{ item.host_port }}:{{ item.container_port }}"
-      loop: "{{ docker_start_list | list }}"
-
 - name: SYSTEM TWEAKS
   hosts: all
 
+  vars:
+    ansible_local: "/home/vagrant/.ansible"
+    python3_local: "/home/vagrant/.local/lib/python3.6/site-packages"
+
   tasks:
+
+    - name: create folders
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ ansible_local }}/plugins/modules"
+        - "{{ ansible_local }}/plugins/filter"
+        - "{{ ansible_local }}/plugins/action"
+        - "{{ ansible_local }}/roles"
+
+    - name: create symlinks
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+        force: true
+      loop:
+        - {src: '{{ python3_local }}/napalm_ansible/modules/',
+           dest: '{{ ansible_local }}/plugins/modules/napalm_ansible'}
+        - {src: '{{ python3_local }}/napalm_ansible/plugins/action/',
+           dest: '{{ ansible_local }}/plugins/action/napalm_ansible'}
 
     - name: suppress ubuntu motd & lastlogin
       become: true
@@ -144,3 +97,92 @@
         path: /root/.bashrc
         insertafter: EOF
         line: source /root/.bash.sh
+
+
+- name: INSTALL PACKAGES
+  hosts: all
+
+  vars_files:
+    - ants.yml
+
+  vars:
+    - apt_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`apt`][].name')
+                 }}"
+    - pip3_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`pip3`][]')
+                 }}"
+    - docker_image_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`docker`][].name')
+                 }}"
+    - docker_start_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`docker` &&
+                    autostart][]')
+                 }}"
+    - git_clone_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`git`][]')
+                 }}"
+    - ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+
+    - debug:
+        msg: "installing via apt: {{ apt_list }}"
+
+    - name: install packages via apt
+      become: true
+      apt:
+        name: "{{ apt_list }}"
+        state: latest
+        update_cache: true
+        install_recommends: false
+        cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+
+    - debug:
+        msg: "installing via pip3: {{ pip3_list | json_query('[].name') }}"
+
+    - name: generate requirements.txt
+      template:
+        src: files/requirements.j2
+        dest: /tmp/requirements.txt
+
+    - name: install python3 packages via pip3
+      pip:
+        requirements: "/tmp/requirements.txt"
+        extra_args: --user -U
+        executable: pip3
+
+    - name: validate all pip3 dependencies are in order
+      shell: pip3 check
+
+    - debug:
+        msg: "fetching docker images: {{ docker_image_list }}"
+
+    - name: pull docker images locally
+      docker_image:
+        name: "{{ item }}"
+        tag: latest
+      loop: "{{ docker_image_list | list }}"
+
+    - debug:
+        msg: "starting docker containers: {{ docker_start_list }}"
+
+    - name: start docker containers
+      docker_container:
+        name: "{{ item | replace('/', '_') }}"
+        image: "{{ item.name }}:{{ item.version }}:"
+        published_ports: "{{ item.host_port }}:{{ item.container_port }}"
+      loop: "{{ docker_start_list | list }}"
+
+    - debug:
+        msg: "cloning via git: {{ git_clone_list | json_query('[].name')  }}"
+
+    - name: clone git repositories
+      become: true
+      git:
+        repo: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+        recursive: true
+        force: true
+        depth: 1
+      loop: "{{ git_clone_list | list }}"
