@@ -289,7 +289,7 @@ ants:
 
         - name: urllib3
           installed_by: pip3
-          version: "<1.25,>=1.20"
+          version: "<1.26,>=1.23"
           url: https://github.com/urllib3/urllib3
           docs: https://urllib3.readthedocs.io/en/latest/
           description: >-
@@ -297,6 +297,7 @@ ants:
 
         - name: requests
           installed_by: pip3
+          version: ">=2.20.0"
           url: https://github.com/requests/requests
           docs: http://docs.python-requests.org/en/master/
           description: >-
@@ -340,6 +341,57 @@ ants:
             interfaces to common cryptographic algorithms such as
             symmetric ciphers, message digests, and key derivation functions.
 
+        - name: tox
+          installed_by: pip3
+          url: https://github.com/tox-dev/tox
+          docs: https://tox.readthedocs.io/en/latest/
+          description: >-
+            Command line driven CI frontend and development task automation
+            tool. At its core tox povides a convenient way to run arbitrary
+            commands in isolated environments to serve as a single entry point
+            for build, test and release activities.
+
+        - name: pan-python
+          installed_by: pip3
+          url: https://github.com/kevinsteves/pan-python
+          docs: https://github.com/kevinsteves/pan-python/tree/master/doc
+          description: >-
+            Python package for Palo Alto Networks Next-Generation Firewalls,
+            WildFire and AutoFocus.
+
+        - name: pynxos
+          installed_by: pip3
+          url: https://github.com/networktocode/pynxos/
+          docs: https://github.com/networktocode/pynxos/
+          description: >-
+            A library for managing Cisco NX-OS devices through NX-API.
+
+        - name: jxmlease
+          installed_by: pip3
+          url: https://github.com/Juniper/jxmlease
+          docs: https://jxmlease.readthedocs.io/en/stable/
+          description: >-
+            A Python module for converting XML to intelligent Python data
+            structures, and converting Python data structures to XML.
+
+        - name: yangson
+          installed_by: pip3
+          url: https://github.com/CZ-NIC/yangson
+          docs: https://yangson.labs.nic.cz/
+          description: >-
+            Yangson is a Python 3 library for working with JSON encoded
+            configuration and state data modelled using the YANG data
+            modelling language.
+
+        - name: yangify
+          installed_by: pip3
+          url: https://github.com/networktocode/yangify
+          docs: https://yangify.readthedocs.io/en/latest/
+          description: >-
+            Yangify is a framework that allows you to easily write code
+            that can map structured and unstructured data into data modelled
+            using YANG models.
+
     - name: ansible
       description: Ansible Tools
 
@@ -380,6 +432,27 @@ ants:
           docs: https://github.com/networktocode/ntc-ansible
           description: >-
             Multi-vendor Ansible Modules for Network Automation.
+
+        - name: Juniper.junos
+          installed_by: ansible-galaxy
+          url: https://github.com/Juniper/ansible-junos-stdlib
+          docs: "https://www.juniper.net/documentation/product/en_US/ansible\
+                -for-junos-os"
+          description: >-
+            The Juniper.junos role includes a set of Ansible modules that
+            perform specific operational and configuration tasks on devices
+            running Junos OS. These tasks include: installing and upgrading
+            Junos OS, provisioning new Junos devices in the network, loading
+            configuration changes, retrieving information, and resetting,
+            rebooting, or shutting down managed devices.
+
+        - name: PaloAltoNetworks.paloaltonetworks
+          installed_by: ansible-galaxy
+          url: https://github.com/PaloAltoNetworks/ansible-pan
+          docs: https://ansible-pan.readthedocs.io/
+          description: >-
+            Ansible modules for Palo Alto Networks NGFWs.
+
 
     - name: system
       description: System Utilities

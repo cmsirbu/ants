@@ -122,6 +122,9 @@
     - git_clone_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`git`][]')
                  }}"
+    - ansible_galaxy_list: "{{ ants | json_query(
+                    'package_groups[].packages[?installed_by==`ansible-galaxy`][]')
+                 }}"
     - ansible_python_interpreter: /usr/bin/python3
 
   tasks:
@@ -175,7 +178,7 @@
       loop: "{{ docker_start_list | list }}"
 
     - debug:
-        msg: "cloning via git: {{ git_clone_list | json_query('[].name')  }}"
+        msg: "cloning via git: {{ git_clone_list | json_query('[].name') }}"
 
     - name: clone git repositories
       become: true
@@ -186,3 +189,11 @@
         force: true
         depth: 1
       loop: "{{ git_clone_list | list }}"
+
+    - debug:
+        msg: "ansible galaxy roles: {{ ansible_galaxy_list |
+              json_query('[].name') }}"
+
+    - name: install ansible galaxy roles
+      command: "ansible-galaxy install {{ item.name }}"
+      loop: "{{ ansible_galaxy_list | list }}"

@@ -20,10 +20,10 @@ It primarily leverages the power of [vagrant](https://www.vagrantup.com/) to qui
 
 All of the packages, tools and libraries that are pre-installed can be found in [ants.yml](basebox/ants.yml).
 
-- **python3**: `jmespath jinja2 flask docker junos-eznc netaddr paramiko netmiko pyeapi pyiosxr textfsm nxapi-plumbing ncclient napalm napalm-logs ciscoconfparse dnspython click boto3 colorama nornir tftpy pexpect pyntc pyserial pysnmp virlutils pyyaml urllib3 requests xmltodict pyang pytest`
-- **ansible**: `ansible-tower-cli napalm-ansible`
-- **system**: `git bash zsh vim make tree curl tcpdump tshark telnet htop openssh-client snmp nmap netcat-openbsd iputils-arping iputils-ping iputils-tracepath net-tools fping nnn`
-- **containers**: `ciscotestautomation/pyats`
+- **python3**: `python3-dev jmespath jinja2 flask docker junos-eznc netaddr paramiko netmiko pyeapi pyiosxr textfsm nxapi-plumbing ncclient napalm napalm-logs ciscoconfparse dnspython click psutil boto3 colorama nornir tftpy pexpect pyats pyntc pyserial pysnmp virlutils pyyaml urllib3 requests xmltodict pyang pytest cryptography tox pan-python pynxos jxmlease yangson yangify`
+- **ansible**: `ansible-tower-cli napalm-ansible ntc-ansible Juniper.junos PaloAltoNetworks.paloaltonetworks`
+- **system**: `git bash zsh vim make tree curl tcpdump tshark telnet htop openssh-client snmp nmap netcat-openbsd iputils-arping iputils-ping iputils-tracepath net-tools fping nnn build-essential libxml2-dev libxml2-utils libxslt1-dev libffi-dev libssl-dev`
+- **containers**: `docker-ce`
 
 **Important note about Python 2.7**: the [official end of life](https://www.python.org/dev/peps/pep-0373/) date is 1st January 2020. While ANTS *still* has Python 2.7 included for backwards compatibility, all packages are pre-installed under Python 3 only.
 
