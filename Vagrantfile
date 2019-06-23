@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
 
   # private management network for devices to connect to (assign .1 to host machine)
   # fixed network syntax for windows
-  config.vm.network 'private_network', ip: "10.250.0.11", netmask: "255.255.255.0"
+  config.vm.network 'private_network', ip: "10.250.0.11", netmask: 24
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
