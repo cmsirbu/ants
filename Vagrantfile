@@ -2,7 +2,7 @@
 # https://docs.vagrantup.com
 
 Vagrant.configure("2") do |config|
-
+  # https://github.com/cmsirbu/ants
   config.vm.box = "cmsirbu/ants"
 
   # private management network for devices to connect to (assign .1 to host machine)
