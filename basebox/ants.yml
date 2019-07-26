@@ -111,6 +111,7 @@ ants:
 
         - name: textfsm
           installed_by: pip3
+          version: "0.4.1"
           url: https://github.com/google/textfsm
           docs: https://github.com/google/textfsm/wiki/TextFSM
           description: >-
@@ -506,6 +507,11 @@ ants:
           installed_by: apt
           description: >-
             Capture network traffic.
+
+        - name: sshpass
+          installed_by: apt
+          description: >-
+            Allows providing passwords in a non-interactive way to ssh.
 
         - name: tshark
           installed_by: apt
