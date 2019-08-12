@@ -4,8 +4,9 @@
   hosts: all
 
   vars:
-    ansible_local: "/home/vagrant/.ansible"
-    python3_local: "/home/vagrant/.local/lib/python3.6/site-packages"
+    - ansible_python_interpreter: /usr/bin/python3
+    - ansible_local: "/home/vagrant/.ansible"
+    - python3_local: "/home/vagrant/.local/lib/python3.6/site-packages"
 
   tasks:
 
@@ -18,18 +19,6 @@
         - "{{ ansible_local }}/plugins/filter"
         - "{{ ansible_local }}/plugins/action"
         - "{{ ansible_local }}/roles"
-
-    - name: create symlinks
-      file:
-        src: "{{ item.src }}"
-        dest: "{{ item.dest }}"
-        state: link
-        force: true
-      loop:
-        - {src: '{{ python3_local }}/napalm_ansible/modules/',
-           dest: '{{ ansible_local }}/plugins/modules/napalm_ansible'}
-        - {src: '{{ python3_local }}/napalm_ansible/plugins/action/',
-           dest: '{{ ansible_local }}/plugins/action/napalm_ansible'}
 
     - name: suppress ubuntu motd & lastlogin
       become: true
@@ -126,6 +115,8 @@
                     'package_groups[].packages[?installed_by==`ansible-galaxy`][]')
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
+    - ansible_local: "/home/vagrant/.ansible"
+    - python3_local: "/home/vagrant/.local/lib/python3.6/site-packages"
 
   tasks:
 
@@ -197,3 +188,15 @@
     - name: install ansible galaxy roles
       command: "ansible-galaxy install {{ item.name }}"
       loop: "{{ ansible_galaxy_list | list }}"
+
+    - name: create symlinks
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+        force: true
+      loop:
+        - {src: '{{ python3_local }}/napalm_ansible/modules/',
+           dest: '{{ ansible_local }}/plugins/modules/napalm_ansible'}
+        - {src: '{{ python3_local }}/napalm_ansible/plugins/action/',
+           dest: '{{ ansible_local }}/plugins/action/napalm_ansible'}

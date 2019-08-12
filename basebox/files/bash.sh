@@ -24,6 +24,16 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# pip bash completion start
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 ) )
+}
+complete -o default -F _pip_completion pip3
+# pip bash completion end
+
 
 ## BASH OPTIONS
 ##########################################
@@ -95,7 +105,7 @@ for option in autocd globstar; do
 done;
 
 
-## BASH PROMPT - PC
+## BASH PROMPT
 ##########################################
 
 if [[ "${USER}" == "root" ]]; then
@@ -145,7 +155,7 @@ alias gd="git diff"
 alias gpl="git pull origin master --tags"
 alias gps="git push origin master --tags"
 
-# I **think** this shouldn't break anything... python2 is going away 
+# I **think** this shouldn't break anything... python2 is going away
 # so we need to start defaulting to python3.
 # DO NOT CHANGE FOR ROOT OR AT THE SYSTEM LEVEL!
 alias python="python3"

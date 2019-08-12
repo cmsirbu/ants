@@ -24,6 +24,8 @@ Vagrant.configure("2") do |config|
     # Ensure latest Ansible via APT
     apt-get update # && apt-get dist-upgrade --yes
     apt-get install --yes software-properties-common apt-transport-https
+    # Stop automatic updating for later boot-ups
+    apt-get purge --yes unattended-upgrades
 
     # Python3 + PIP3
     apt-get install python3-pip python3-venv --no-install-recommends --yes
