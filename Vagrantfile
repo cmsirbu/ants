@@ -8,11 +8,13 @@ Vagrant.configure("2") do |config|
   # private management network for devices to connect to (assign .1 to host machine)
   # config.vm.network 'private_network', ip: "10.250.0.11", netmask: 24
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
+  # 1024 is default, modify as needed
+  # config.vm.provider "virtualbox" do |vb|
+  #   vb.memory = "1024"
+  # end
 
-    # disables console output logging to file
-    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
-  end
-
+  # example provisioner for adding more packages
+  # config.vm.provision "shell", privileged: false, inline: <<-SHELL
+  #   pip3 install -U --user -r /vagrant/requirements.txt
+  # SHELL
 end
