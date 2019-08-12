@@ -33,7 +33,7 @@ Because it allows you to easily **create, use and destroy** the same reproducibl
 
 ### Can I just get a VM?
 
-If you **just want a VM**, I'm planning to offer an `ova` file for download with each release as well or you could [build your own](#building-your-own-ants-vm).
+`EXPERIMENTAL` If you **just want a VM**, you can download an `ova` file from the [releases page](https://github.com/cmsirbu/ants/releases). Right now it's an export of the vagrant box, so you can use `vagrant/vagrant` to log in. You'll have to set up your own network adapters to use SSH (as the default is outbound NAT only) and there is no shared folder.
 
 ## Building your own ANTS VM
 
