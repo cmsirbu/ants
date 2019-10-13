@@ -1,10 +1,14 @@
 # ANTS Vagrant lab
 
+The best way to start this lab is one device at a time and ensure the provisioning script actually runs (if there's any timeout on startup you may have to manually run `vagrant provision boxname`).
+
 This example [Vagrantfile](Vagrantfile) allows you to spin up the following machines, each connected to the `10.250.0.0/24 vboxnet0` interface and to two internal layer2 segments:
 
 - Juniper vQFX - Routing Engine (1GB RAM), Packet Forwarding Engine (2GB RAM)
 - Arista vEOS - 2GB RAM
 - Cisco Nexus9000v - 4GB RAM
+
+If you don't already have `vboxnet0` created you should open the `Virtualbox GUI -> File -> Host Network Manager` and add it with the `10.250.0.1/24` IP for the host machine and disable DHCP.
 
 ### Sourcing the boxes
 
