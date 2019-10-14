@@ -352,6 +352,14 @@ ants:
             commands in isolated environments to serve as a single entry point
             for build, test and release activities.
 
+        - name: pylama
+          installed_by: pip3
+          url: https://github.com/klen/pylama
+          docs: https://pylama.readthedocs.io/en/latest/
+          description: >-
+            Code audit tool for Python that wrap these tools: pycodestyle
+            pydocstyle PyFlakes Mccabe Pylint Radon eradicate
+
         - name: pan-python
           installed_by: pip3
           url: https://github.com/kevinsteves/pan-python
