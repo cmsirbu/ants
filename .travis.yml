@@ -4,7 +4,9 @@ python:
   - "3.6"
 
 install:
-  - "pip install yamllint"
+  - "pip install yamllint black pylama"
 
 script:
   - "find . -name '*.yml' | xargs yamllint -s"
+  - "black -v --check ."
+  - "pylama -i E501 ."

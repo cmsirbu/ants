@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "cmsirbu/ants"
 
   # private management network for devices to connect to (assign .1 to host machine)
+  # this should be vboxnet0 if you wish to interconnect to devices from examples/lab-vagrant
   # config.vm.network 'private_network', ip: "10.250.0.11", netmask: 24
 
   # 1024 is default, modify as needed
