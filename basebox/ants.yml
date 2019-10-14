@@ -418,6 +418,14 @@ ants:
             used as a client library for other python apps, or as a reference
             for others developing API interactions with Tower's REST API.
 
+        - name: ansible-lint
+          installed_by: pip3
+          url: https://github.com/ansible/ansible-lint
+          docs: https://docs.ansible.com/ansible-lint/
+          description: >-
+            Ansible Lint is a commandline tool for linting playbooks. Use it to
+            detect behaviors and practices that could potentially be improved.
+
         - name: napalm-ansible
           installed_by: pip3
           url: https://github.com/napalm-automation/napalm-ansible
