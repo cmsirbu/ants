@@ -24,5 +24,7 @@ ip routing
 interface Loopback0
 ip address 100.100.100.112/32
 !
+ntp server 100.100.100.200
+!
 write memory
 "

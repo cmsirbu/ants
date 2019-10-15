@@ -18,10 +18,24 @@ all:
               model: VQFX-10000
     cisco:
       children:
-        iosxe:
-        nxos:
+        IOSXE:
+        NXOS:
+          hosts:
+            n9kv1:
+              ansible_host: 10.250.0.113
+              ansible_user: vagrant
+              ansible_password: vagrant
+              version: 4.21.1.1F
+              model: vEOS
     arista:
       children:
         vEOS:
+          hosts:
+            veos1:
+              ansible_host: 10.250.0.112
+              ansible_user: vagrant
+              ansible_password: vagrant
+              version: 4.21.1.1F
+              model: vEOS
         cEOS:
 ...

@@ -1,6 +1,7 @@
 import textfsm, yaml
 
-def test_textfsm_clitable_cisco(device_inventory):
+
+def test_textfsm_cisco_ios(device_inventory):
     """
     Test the textfsm library by parsing output from Cisco IOS show ip route
     and comparing to expected output. Test data taken from ntc-templates repo.
