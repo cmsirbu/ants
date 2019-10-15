@@ -1,4 +1,5 @@
-import textfsm, yaml
+import textfsm
+import yaml
 
 
 def test_textfsm_cisco_ios(device_inventory):
