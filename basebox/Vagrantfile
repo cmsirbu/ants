@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
   # User is "vagrant".
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     # Python3 + ansible
-    pip3 install -U --user "ansible>=2.7,<2.8" jmespath
+    pip3 install -U --user "ansible>=2.9,<2.10" jmespath
   SHELL
 
   # Installs latest docker-ce
