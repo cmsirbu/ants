@@ -5,7 +5,7 @@ set expandtab
 " Make tabs as wide as two spaces
 "set tabstop=2
 " Show a marker at column 80
-set colorcolumn=80,110
+set colorcolumn=88,110
 " Enable line numbers
 set number
 " Highlight current line
@@ -31,6 +31,11 @@ set showmode
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
+endif
+
 " store swap, backup and undo files in /tmp with unique filenames
 set backupdir=/tmp//
 set directory=/tmp//
@@ -41,6 +46,12 @@ map q: :q
 " trim all whitespaces away
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
+" KEY REMAPS
+" trim all whitespaces away
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" tab navigation
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 
 " COLORS
 syntax enable
@@ -51,9 +62,30 @@ set termguicolors     " enable true colors support
 let ayucolor="dark"   " dark/light/mirage
 colorscheme ayu
 
-" STATUS LINE
+highlight TabLineFill cterm=none
+highlight TabLine cterm=none ctermfg=darkgrey ctermbg=none
+
+"let g:indentLine_enabled = 0
+" UTF8 required!
+let g:indentLine_char = '▏'
+
+" FILETYPE PREFERENCES
+autocmd FileType go setlocal noet ts=4 sw=4
+autocmd FileType sh setlocal noet ts=4 sw=4
+autocmd BufRead,BufNewFile *.js setlocal et ts=2 sw=2
+autocmd FileType html setlocal et ts=2 sw=2
+autocmd FileType scss setlocal et ts=2 sw=2
+autocmd FileType yaml setlocal et ts=2 sw=2
+autocmd FileType markdown setlocal tw=80 et ts=2 sw=2
+autocmd FileType text setlocal tw=80
+autocmd FileType python setlocal et ts=4 sw=4
+
+
+" SIMPLE STATUS LINE
 set laststatus=2
-set statusline=%t       "tail of the filename
+set statusline=[%n]
+set statusline+=[%{mode()}]
+set statusline+=[%t]    "tail of the filename
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%h      "help file flag
