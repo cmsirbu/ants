@@ -138,12 +138,13 @@
     - name: generate requirements.txt
       template:
         src: files/requirements.j2
-        dest: /tmp/requirements.txt
+        dest: /vagrant/requirements.txt
 
     - name: install python3 packages via pip3
       pip:
-        requirements: "/tmp/requirements.txt"
-        extra_args: --user -U
+        requirements: "/vagrant/requirements.txt"
+        # 2020-resolver will become default in pip 20.3
+        extra_args: --user -U --use-feature=2020-resolver
         executable: pip3
 
     - name: validate all pip3 dependencies are in order

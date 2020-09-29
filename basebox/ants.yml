@@ -62,7 +62,7 @@ ants:
 
         - name: junos-eznc
           installed_by: pip3
-          version: "==2.2.1"
+          #version: "==2.2.1"
           url: https://github.com/Juniper/py-junos-eznc
           docs: "https://www.juniper.net/documentation/en_US/junos-pyez/informa\
                 tion-products/pathway-pages/junos-pyez-developer-guide.html"
@@ -87,7 +87,7 @@ ants:
 
         - name: netmiko
           installed_by: pip3
-          version: "<3.0.0"
+          #version: "<3.0.0"
           url: https://github.com/ktbyers/netmiko
           docs: https://github.com/ktbyers/netmiko#tutorials
           description: >-
@@ -214,7 +214,7 @@ ants:
 
         - name: colorama
           installed_by: pip3
-          version: "<0.5.0,>=0.4.1"
+          #version: "<0.5.0,>=0.4.1"
           url: https://github.com/tartley/colorama
           docs: https://github.com/tartley/colorama
           description: >-
@@ -299,7 +299,7 @@ ants:
 
         - name: urllib3
           installed_by: pip3
-          version: "<1.26,>=1.23"
+          #version: "<1.26,>=1.23"
           url: https://github.com/urllib3/urllib3
           docs: https://urllib3.readthedocs.io/en/latest/
           description: >-

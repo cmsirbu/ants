@@ -1,0 +1,48 @@
+jmespath
+jinja2
+flask
+docker
+junos-eznc
+netaddr
+paramiko
+netmiko
+pyeapi
+pyiosxr
+textfsm ==1.1.0
+ntc-templates
+nxapi-plumbing
+ncclient
+napalm
+napalm-logs
+ciscoconfparse
+dnspython
+click
+psutil
+boto3
+colorama
+nornir
+tftpy
+pexpect
+pyats
+pyntc
+pyserial
+pysnmp
+virlutils
+pyyaml
+urllib3
+requests >=2.20.0
+xmltodict
+pyang
+pytest
+cryptography >=2.6.1
+tox
+pylama
+pan-python
+pynxos
+jxmlease
+yangson ==1.3.45
+yangify
+ansible >=2.9,<2.10
+ansible-tower-cli
+ansible-lint
+napalm-ansible

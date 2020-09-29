@@ -4,7 +4,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "ubuntu/bionic64"
 
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "127.0.0.1"
@@ -24,11 +24,14 @@ Vagrant.configure("2") do |config|
     # Ensure latest Ansible via APT
     apt-get update # && apt-get dist-upgrade --yes
     apt-get install --yes software-properties-common apt-transport-https
-    # Stop automatic updating for later boot-ups, this is not a prod box
+    # Stop automatic updating for later boot-ups
     apt-get purge --yes unattended-upgrades
 
     # Python3 + PIP3
     apt-get install python3-pip python3-venv --no-install-recommends --yes
+
+    # Python2 + PIP2
+    apt-get install python-minimal python-pip python-virtualenv python-setuptools --no-install-recommends --yes
   SHELL
 
   # User is "vagrant".
@@ -36,6 +39,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     # Python3 + PIP3 + ansible
     pip3 install -U --user pip setuptools wheel
+
+    # Python2 + PIP2
+    pip2 install -U --user pip setuptools wheel
   SHELL
 
   # User is "vagrant".
