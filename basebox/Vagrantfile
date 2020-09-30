@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   config.vm.network 'private_network', ip: "10.250.0.11", netmask: 24, name: "vboxnet0"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
+    vb.memory = "2048"
 
     # disables console output logging to file
     vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
@@ -21,26 +21,33 @@ Vagrant.configure("2") do |config|
 
   # User is "root".
   config.vm.provision "shell", inline: <<-SHELL
-    # Ensure latest Ansible via APT
-    apt-get update # && apt-get dist-upgrade --yes
+    # Update packages
+    apt-get update
+    apt-get dist-upgrade --yes
     apt-get install --yes software-properties-common apt-transport-https
     # Stop automatic updating for later boot-ups, this is not a prod box
-    apt-get purge --yes unattended-upgrades
+    # Snap is not needed, purge to reduce VM size
+    apt-get purge --yes unattended-upgrades snap
+    apt-get autoremove --yes
+    apt-get autoclean --yes
+    apt-get clean --yes
 
     # Python3 + PIP3
-    apt-get install python3-pip python3-venv --no-install-recommends --yes
+    apt-get install python3-pip python3-venv python3-testresources --yes
+    # Fix unmet dependency of system packages #12
+    apt-get install python3-testresources python3-cairo --yes --no-install-recommends
   SHELL
 
   # User is "vagrant".
   # These MUST be done in a separate shell as they change the pip path.
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    # Python3 + PIP3 + ansible
-    pip3 install -U --user pip setuptools wheel
+    # Latest pip3 locally for user vagrant
+    pip3 install -U --user pip
   SHELL
 
   # User is "vagrant".
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    # Python3 + ansible
+    # Install ansible locally for user vagrant
     pip3 install -U --user "ansible>=2.9,<2.10" jmespath
   SHELL
 

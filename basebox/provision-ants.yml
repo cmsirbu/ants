@@ -173,7 +173,6 @@
         msg: "cloning via git: {{ git_clone_list | json_query('[].name') }}"
 
     - name: clone git repositories
-      become: true
       git:
         repo: "{{ item.url }}"
         dest: "{{ item.dest }}"
