@@ -62,7 +62,7 @@ ants:
 
         - name: junos-eznc
           installed_by: pip3
-          #version: "==2.2.1"
+          # version: "==2.2.1"
           url: https://github.com/Juniper/py-junos-eznc
           docs: "https://www.juniper.net/documentation/en_US/junos-pyez/informa\
                 tion-products/pathway-pages/junos-pyez-developer-guide.html"
@@ -87,7 +87,7 @@ ants:
 
         - name: netmiko
           installed_by: pip3
-          #version: "<3.0.0"
+          # version: "<3.0.0"
           url: https://github.com/ktbyers/netmiko
           docs: https://github.com/ktbyers/netmiko#tutorials
           description: >-
@@ -214,7 +214,7 @@ ants:
 
         - name: colorama
           installed_by: pip3
-          #version: "<0.5.0,>=0.4.1"
+          # version: "<0.5.0,>=0.4.1"
           url: https://github.com/tartley/colorama
           docs: https://github.com/tartley/colorama
           description: >-
@@ -299,7 +299,7 @@ ants:
 
         - name: urllib3
           installed_by: pip3
-          #version: "<1.26,>=1.23"
+          # version: "<1.26,>=1.23"
           url: https://github.com/urllib3/urllib3
           docs: https://urllib3.readthedocs.io/en/latest/
           description: >-
@@ -410,6 +410,27 @@ ants:
             Yangify is a framework that allows you to easily write code
             that can map structured and unstructured data into data modelled
             using YANG models.
+
+        - name: rich
+          installed_by: pip3
+          url: https://github.com/willmcgugan/rich
+          docs: https://rich.readthedocs.io/en/latest/
+          description: >-
+            Rich is a Python library for rich text and beautiful formatting
+            in the terminal. The Rich API makes it easy to add color and style
+            to terminal output. Rich can also render pretty tables, progress
+            bars, markdown, syntax highlighted source code, tracebacks,
+            and more — out of the box.
+
+        - name: invoke
+          installed_by: pip3
+          url: https://www.pyinvoke.org/
+          docs: https://docs.pyinvoke.org/en/stable/
+          description: >-
+            Invoke is a Python task execution tool & library, drawing
+            inspiration from various sources to arrive at a powerful
+            and clean feature set.
+
 
     - name: ansible
       description: Ansible Tools
