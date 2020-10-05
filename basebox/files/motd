@@ -15,8 +15,6 @@ Welcome to the Awesome Networking Tools Sandbox!
 - Run your code from the host machine shared folder /vagrant (persistent folder)
 - Check out/contribute examples https://github.com/cmsirbu/ants/tree/master/examples
 
-!!! Python3.6 is the default (through aliases for now). If you **really** need
-!!!   2.7 you need to install stuff explicitly using pip2 and python2.
 !!! ANTS packages are installed under the "vagrant" user (pip3 install --user)
 !!!   which you should use exclusively - root usage is *strongly* discouraged.
 !!! That said, if you break anything, you can easily start from scratch

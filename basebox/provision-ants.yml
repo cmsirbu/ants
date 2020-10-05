@@ -6,7 +6,7 @@
   vars:
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.6/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
 
   tasks:
 
@@ -116,7 +116,7 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.6/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
 
   tasks:
 

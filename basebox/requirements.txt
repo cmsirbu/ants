@@ -42,6 +42,8 @@ pynxos
 jxmlease
 yangson ==1.3.45
 yangify
+rich
+invoke
 ansible >=2.9,<2.10
 ansible-tower-cli
 ansible-lint
