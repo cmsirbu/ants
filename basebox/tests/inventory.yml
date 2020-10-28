@@ -14,7 +14,7 @@ all:
             sw1:
               ansible_host: 10.250.0.111
               ansible_user: vagrant
-              version: 17.4R1.16
+              version: 19.4R1.10
               model: VQFX-10000
     cisco:
       children:
