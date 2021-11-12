@@ -42,7 +42,7 @@ complete -o default -F _pip_completion pip3
 shopt -s checkwinsize
 
 # Automatically trim long paths in the prompt
-PROMPT_DIRTRIM=4
+PROMPT_DIRTRIM=3
 
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
@@ -140,7 +140,7 @@ alias ap="ansible-playbook"
 alias va="source venv/bin/activate"
 
 alias gl="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai]\" --decorate --graph"
-alias gll="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai]\" --decorate --graph --numstat"
+alias gll="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai] %n%b\" --decorate --graph --numstat"
 
 alias gs="git status -s"
 alias gss="git status"
@@ -152,5 +152,6 @@ alias grv='git remote -v'
 alias gc="git commit"
 alias ga="git add "
 alias gd="git diff"
-alias gpl="git pull origin master --tags"
-alias gps="git push origin master --tags"
+alias gwd="git diff --word-diff --word-diff-regex='\w+'"
+alias gpl="git pull"
+alias gps="git push"
