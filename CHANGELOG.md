@@ -10,10 +10,14 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 ### Added
 
 - This [CHANGELOG](/CHANGELOG.md).
+- Added docker compose v2 integration.
 
 ### Removed
 
 ### Changed
+
+- Refactored provisioning playbook.
+- Updated to Ansible 5.
 
 ### Fixed
 

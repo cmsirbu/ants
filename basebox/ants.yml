@@ -439,7 +439,7 @@ ants:
 
         - name: ansible
           installed_by: pip3
-          version: ">=2.9,<2.10"
+          version: "~=5.0"
           url: https://github.com/ansible/ansible
           docs: https://docs.ansible.com/ansible/latest/index.html
           description: >-
@@ -679,19 +679,14 @@ ants:
 
         - name: docker-ce
           installed_by: vagrant
+          url: https://www.docker.com/
+          docs: https://docs.docker.com/
           description: >-
             Docker Engine.
 
-        # Container seems broken, doesn't render templates
-        # - name: cidrblock/td4a
-        #   installed_by: docker
-        #   version: latest
-        #   autostart: true
-        #   host_port: 8001
-        #   container_port: 5000
-        #   description: >-
-        #     Template Designer for Automation. TD4A is a visual design aid for
-        #     building and testing jinja2 templates. It will combine data in
-        #     yaml format with a jinja2 template and render the output.
-        #     All jinja2 filters are supported along with the filter plugins
-        #     from Ansible version 2.4.1.0.
+        - name: docker-compose
+          installed_by: vagrant
+          url: https://docs.docker.com/compose/cli-command/
+          version: "v2.3.3"
+          description: >-
+            Docker Compose v2

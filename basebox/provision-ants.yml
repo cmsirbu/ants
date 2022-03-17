@@ -2,6 +2,7 @@
 
 - name: SYSTEM TWEAKS
   hosts: all
+  tags: system_tweaks
 
   vars:
     - ansible_python_interpreter: /usr/bin/python3
@@ -9,8 +10,7 @@
     - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
 
   tasks:
-
-    - name: create folders
+    - name: CREATE FOLDERS
       file:
         path: "{{ item }}"
         state: directory
@@ -20,7 +20,7 @@
         - "{{ ansible_local }}/plugins/action"
         - "{{ ansible_local }}/roles"
 
-    - name: suppress ubuntu motd & lastlogin
+    - name: SUPPRESS UBUNTU MOTD & LASTLOGIN
       become: true
       shell: |
         chmod a-x /etc/update-motd.d/*
@@ -29,12 +29,12 @@
       args:
         warn: false
 
-    - name: set hostname
+    - name: SET HOSTNAME
       become: true
       hostname:
         name: ants
 
-    - name: create /ants
+    - name: CREATE /ANTS
       become: true
       file:
         path: /ants
@@ -43,8 +43,7 @@
         owner: vagrant
         group: vagrant
 
-
-    - name: copy various files for root and vagrant
+    - name: COPY VARIOUS FILES FOR ROOT AND VAGRANT
       become: true
       copy:
         src: "{{ item.src }}"
@@ -74,13 +73,13 @@
         - {src: 'files/vim/', dest: '/home/vagrant/.vim',
            owner: vagrant, group: vagrant, mode: preserve}
 
-    - name: bashrc for user - vagrant
+    - name: BASHRC FOR USER - VAGRANT
       lineinfile:
         path: /home/vagrant/.bashrc
         insertafter: EOF
         line: source /home/vagrant/.bash.sh
 
-    - name: bashrc for user - root
+    - name: BASHRC FOR USER - ROOT
       become: true
       lineinfile:
         path: /root/.bashrc
@@ -88,8 +87,9 @@
         line: source /root/.bash.sh
 
 
-- name: INSTALL PACKAGES
+- name: INSTALL SYSTEM PACKAGES
   hosts: all
+  tags: install_system
 
   vars_files:
     - ants.yml
@@ -98,9 +98,73 @@
     - apt_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`apt`][].name')
                  }}"
+    - ansible_python_interpreter: /usr/bin/python3
+    - ansible_local: "/home/vagrant/.ansible"
+    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+
+  tasks:
+
+    - name: UPDATE SYSTEM PACKAGES
+      become: true
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+        upgrade: dist
+
+    - debug:
+        msg: "Installing via apt: {{ apt_list }}"
+
+    - name: INSTALL PACKAGES VIA APT
+      become: true
+      apt:
+        name: "{{ apt_list }}"
+        state: latest
+        install_recommends: false
+
+
+- name: INSTALL PYTHON PACKAGES
+  hosts: all
+  tags: install_pip
+
+  vars_files:
+    - ants.yml
+
+  vars:
     - pip3_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`pip3`][]')
                  }}"
+    - ansible_python_interpreter: /usr/bin/python3
+    - ansible_local: "/home/vagrant/.ansible"
+    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+
+  tasks:
+    - debug:
+        msg: "Installing via pip3: {{ pip3_list | json_query('[].name') }}"
+
+    - name: GENERATE REQUIREMENTS.TXT
+      template:
+        src: files/requirements.j2
+        dest: /vagrant/requirements.txt
+
+    - name: INSTALL PYTHON3 PACKAGES VIA PIP3
+      pip:
+        requirements: "/vagrant/requirements.txt"
+        # 2020-resolver will become default in pip 20.3
+        extra_args: --user -U --use-feature=2020-resolver
+        executable: pip3
+
+    - name: VALIDATE ALL PIP3 DEPENDENCIES ARE IN ORDER
+      shell: pip3 check
+
+
+- name: INSTALL DOCKER UTILS AND CONTAINERS
+  hosts: all
+  tags: install_containers
+
+  vars_files:
+    - ants.yml
+
+  vars:
     - docker_image_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`docker`][].name')
                  }}"
@@ -108,6 +172,63 @@
                     'package_groups[].packages[?installed_by==`docker` &&
                     autostart][]')
                  }}"
+    - ansible_python_interpreter: /usr/bin/python3
+    - ansible_local: "/home/vagrant/.ansible"
+    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - DOCKER_COMPOSE_VERSION: "{{ ants | json_query(
+                    'package_groups[].packages[?name==`docker-compose`][].version')
+                    | first
+                 }}"
+
+  tasks:
+    - debug:
+        msg: "Fetching docker images: {{ docker_image_list }}"
+
+    - name: PULL DOCKER IMAGES LOCALLY
+      docker_image:
+        name: "{{ item }}"
+        tag: latest
+      loop: "{{ docker_image_list | list }}"
+
+    - debug:
+        msg: "Starting docker containers: {{ docker_start_list }}"
+
+    - name: START DOCKER CONTAINERS
+      docker_container:
+        name: "{{ item | replace('/', '_') }}"
+        image: "{{ item.name }}:{{ item.version }}:"
+        published_ports: "{{ item.host_port }}:{{ item.container_port }}"
+      loop: "{{ docker_start_list | list }}"
+
+    - name: CREATE DOCKER PLUGINS DIR
+      become: true
+      file:
+        name: "/usr/local/lib/docker/cli-plugins"
+        owner: root
+        group: root
+        mode: "755"
+        state: directory
+
+    - name: DOWNLOAD DOCKER-COMPOSE {{ DOCKER_COMPOSE_VERSION }}
+      become: true
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/\
+              {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64"
+        dest: "/usr/local/lib/docker/cli-plugins/docker-compose"
+        mode: "755"
+        # TOFIX - doesn't seem to work because of redirects
+        checksum: "sha256:https://github.com/docker/compose/releases/download/\
+              {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64.sha256"
+
+
+- name: INSTALL OTHER PACKAGES
+  hosts: all
+  tags: install_other
+
+  vars_files:
+    - ants.yml
+
+  vars:
     - git_clone_list: "{{ ants | json_query(
                     'package_groups[].packages[?installed_by==`git`][]')
                  }}"
@@ -119,60 +240,10 @@
     - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
 
   tasks:
-
     - debug:
-        msg: "installing via apt: {{ apt_list }}"
+        msg: "Cloning via git: {{ git_clone_list | json_query('[].name') }}"
 
-    - name: install packages via apt
-      become: true
-      apt:
-        name: "{{ apt_list }}"
-        state: latest
-        update_cache: true
-        install_recommends: false
-        cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
-
-    - debug:
-        msg: "installing via pip3: {{ pip3_list | json_query('[].name') }}"
-
-    - name: generate requirements.txt
-      template:
-        src: files/requirements.j2
-        dest: /vagrant/requirements.txt
-
-    - name: install python3 packages via pip3
-      pip:
-        requirements: "/vagrant/requirements.txt"
-        # 2020-resolver will become default in pip 20.3
-        extra_args: --user -U --use-feature=2020-resolver
-        executable: pip3
-
-    - name: validate all pip3 dependencies are in order
-      shell: pip3 check
-
-    - debug:
-        msg: "fetching docker images: {{ docker_image_list }}"
-
-    - name: pull docker images locally
-      docker_image:
-        name: "{{ item }}"
-        tag: latest
-      loop: "{{ docker_image_list | list }}"
-
-    - debug:
-        msg: "starting docker containers: {{ docker_start_list }}"
-
-    - name: start docker containers
-      docker_container:
-        name: "{{ item | replace('/', '_') }}"
-        image: "{{ item.name }}:{{ item.version }}:"
-        published_ports: "{{ item.host_port }}:{{ item.container_port }}"
-      loop: "{{ docker_start_list | list }}"
-
-    - debug:
-        msg: "cloning via git: {{ git_clone_list | json_query('[].name') }}"
-
-    - name: clone git repositories
+    - name: CLONE GIT REPOSITORIES
       git:
         repo: "{{ item.url }}"
         dest: "{{ item.dest }}"
@@ -182,14 +253,14 @@
       loop: "{{ git_clone_list | list }}"
 
     - debug:
-        msg: "ansible galaxy roles: {{ ansible_galaxy_list |
+        msg: "Ansible galaxy roles: {{ ansible_galaxy_list |
               json_query('[].name') }}"
 
-    - name: install ansible galaxy roles
+    - name: INSTALL ANSIBLE GALAXY ROLES
       command: "ansible-galaxy install {{ item.name }}"
       loop: "{{ ansible_galaxy_list | list }}"
 
-    - name: create symlinks
+    - name: CREATE SYMLINKS
       file:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
