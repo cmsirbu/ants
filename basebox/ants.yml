@@ -103,17 +103,9 @@ ants:
             provides a client API work using eAPI and communicating with EOS
             nodes.
 
-        - name: pyiosxr
-          installed_by: pip3
-          url: https://github.com/fooelisa/pyiosxr/
-          docs: https://github.com/fooelisa/pyiosxr/#documentation
-          description: >-
-            pyIOSXR is a Python library that facilitates communication with
-            Cisco devices running IOS-XR through the XML agent.
-
         - name: textfsm
           installed_by: pip3
-          version: "==1.1.0"
+          version: "==1.1.2"
           url: https://github.com/google/textfsm
           docs: https://github.com/google/textfsm/wiki/TextFSM
           description: >-
@@ -394,7 +386,7 @@ ants:
 
         - name: yangson
           installed_by: pip3
-          version: "==1.3.45"
+          #version: "==1.4.13"
           url: https://github.com/CZ-NIC/yangson
           docs: https://yangson.labs.nic.cz/
           description: >-
@@ -431,6 +423,59 @@ ants:
             inspiration from various sources to arrive at a powerful
             and clean feature set.
 
+        - name: pynetbox
+          installed_by: pip3
+          url: https://github.com/netbox-community/pynetbox
+          docs: https://pynetbox.readthedocs.io/en/latest/
+          description: >-
+            Python API client library for Netbox.
+
+        - name: pynautobot
+          installed_by: pip3
+          url: https://github.com/nautobot/pynautobot
+          docs: https://pynautobot.readthedocs.io/en/stable/
+          description: >-
+            Python API client library for Nautobot.
+
+        - name: netutils
+          installed_by: pip3
+          url: https://github.com/networktocode/netutils
+          docs: https://netutils.readthedocs.io/en/stable/
+          description: >-
+            A Python library that is a collection of objects for common
+            network automation tasks.
+
+        - name: ipython
+          installed_by: pip3
+          url: https://ipython.org/
+          docs: https://ipython.readthedocs.io/en/stable/
+          description: >-
+            A powerful interactive shell for Python development.
+
+        - name: salt-sproxy
+          installed_by: pip3
+          url: https://github.com/mirceaulinic/salt-sproxy
+          docs: https://salt-sproxy.readthedocs.io/en/latest/
+          description: >-
+            A powerful interactive shell for Python development.
+
+        - name: netsim-tools
+          installed_by: pip3
+          url: https://github.com/ipspace/netsim-tools
+          docs: https://netsim-tools.readthedocs.io/en/latest/install.html
+          description: >-
+            netsim-tools are bringing infrastructure-as-code concepts to
+            networking labs.
+
+        # TODO: Enable once restrictive outdated dependencies are fixed.
+        # - name: schema-enforcer
+        #   installed_by: pip3
+        #   url: https://github.com/networktocode/schema-enforcer
+        #   docs: https://github.com/networktocode/schema-enforcer
+        #   description: >-
+        #     Schema Enforcer provides a framework for testing structured
+        #     data against schema definitions.
+
 
     - name: ansible
       description: Ansible Tools
@@ -465,41 +510,20 @@ ants:
             Ansible Lint is a commandline tool for linting playbooks. Use it to
             detect behaviors and practices that could potentially be improved.
 
-        - name: napalm-ansible
-          installed_by: pip3
+        - name: networktocode.nautobot
+          installed_by: ansible-galaxy
+          url: https://github.com/nautobot/nautobot-ansible
+          docs: https://nautobot-ansible.readthedocs.io/en/latest/
+          description: >-
+            Collection of Nautobot modules for Ansible.
+
+        - name: napalm.napalm
+          installed_by: ansible-galaxy
           url: https://github.com/napalm-automation/napalm-ansible
-          docs: https://napalm.readthedocs.io/en/latest/integrations/index.html
+          docs: https://napalm.readthedocs.io/en/latest/
           description: >-
-            Collection of ansible modules that use NAPALM to retrieve data or
+            Collection of Ansible modules that use NAPALM to retrieve data or
             modify configuration on networking devices.
-
-        - name: ntc-ansible
-          installed_by: git
-          dest: /home/vagrant/.ansible/plugins/modules/ntc-ansible
-          url: https://github.com/networktocode/ntc-ansible
-          docs: https://github.com/networktocode/ntc-ansible
-          description: >-
-            Multi-vendor Ansible Modules for Network Automation.
-
-        - name: Juniper.junos
-          installed_by: ansible-galaxy
-          url: https://github.com/Juniper/ansible-junos-stdlib
-          docs: "https://www.juniper.net/documentation/product/en_US/ansible\
-                -for-junos-os"
-          description: >-
-            The Juniper.junos role includes a set of Ansible modules that
-            perform specific operational and configuration tasks on devices
-            running Junos OS. These tasks include: installing and upgrading
-            Junos OS, provisioning new Junos devices in the network, loading
-            configuration changes, retrieving information, and resetting,
-            rebooting, or shutting down managed devices.
-
-        - name: PaloAltoNetworks.paloaltonetworks
-          installed_by: ansible-galaxy
-          url: https://github.com/PaloAltoNetworks/ansible-pan
-          docs: https://ansible-pan.readthedocs.io/
-          description: >-
-            Ansible modules for Palo Alto Networks NGFWs.
 
 
     - name: system
@@ -687,6 +711,6 @@ ants:
         - name: docker-compose
           installed_by: vagrant
           url: https://docs.docker.com/compose/cli-command/
-          version: "v2.3.3"
+          version: "v2.5.0"
           description: >-
             Docker Compose v2

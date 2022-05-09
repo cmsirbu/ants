@@ -5,6 +5,7 @@
 ## EXPORTS
 ##########################################
 export GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHSTATE=1 GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWCOLORHINTS=1 GIT_PS1_DESCRIBE_STYLE="branch" GIT_PS1_SHOWUPSTREAM="auto git"
+export PATH=$PATH:/usr/local/go/bin
 
 ## DIRCOLORS + COLORIZED LS/GREP
 ##########################################
@@ -42,7 +43,7 @@ complete -o default -F _pip_completion pip3
 shopt -s checkwinsize
 
 # Automatically trim long paths in the prompt
-PROMPT_DIRTRIM=3
+PROMPT_DIRTRIM=2
 
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
@@ -109,9 +110,9 @@ done;
 ##########################################
 
 if [[ "${USER}" == "root" ]]; then
-    export PS1='\[\033[00;31m\]\u\[\033[00;37m\] \[\033[00;34m\]\h \[\033[01;36m\]\w\[\033[00;33m\]$(__git_ps1 " (%s)")\[\033[00m\] '
+    export PS1='\[\033[1;30;41m\]\u\[\033[00;37m\] \[\033[00;37m\]\h \[\033[00m\]\w\[\033[00;33m\]$(__git_ps1 " (%s)")\[\033[00m\] '
 else
-    export PS1='\[\033[00;31m\]\u\[\033[00;37m\] \[\033[00;37m\]\h \[\033[01;36m\]\w\[\033[00;33m\]$(__git_ps1 " (%s)")\[\033[00m\] '
+    export PS1='\[\033[00;31m\]\u\[\033[00;37m\] \[\033[00;37m\]\h \[\033[00m\]\w\[\033[00;33m\]$(__git_ps1 " (%s)")\[\033[00m\] '
 fi;
 
 export PS2="\[\033[00;33m\]> \[\033[00m\]";
@@ -146,7 +147,6 @@ alias gs="git status -s"
 alias gss="git status"
 
 alias gb='git branch '
-alias go='git checkout '
 alias grv='git remote -v'
 
 alias gc="git commit"

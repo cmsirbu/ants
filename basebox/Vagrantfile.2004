@@ -4,7 +4,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/jammy64"
+  config.vm.box = "ubuntu/focal64"
 
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "127.0.0.1"
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
     # Python3 + PIP3
     apt-get install python3-pip python3-venv python-is-python3 --yes
     # Fix unmet dependency of system packages #12
-    apt-get install python3-cairo --yes --no-install-recommends
+    apt-get install python3-testresources python3-cairo --yes --no-install-recommends
 
   SHELL
 

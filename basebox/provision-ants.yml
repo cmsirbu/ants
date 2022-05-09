@@ -150,7 +150,7 @@
       pip:
         requirements: "/vagrant/requirements.txt"
         # 2020-resolver will become default in pip 20.3
-        extra_args: --user -U --use-feature=2020-resolver
+        extra_args: --user -U
         executable: pip3
 
     - name: VALIDATE ALL PIP3 DEPENDENCIES ARE IN ORDER
@@ -200,25 +200,95 @@
         published_ports: "{{ item.host_port }}:{{ item.container_port }}"
       loop: "{{ docker_start_list | list }}"
 
-    - name: CREATE DOCKER PLUGINS DIR
-      become: true
-      file:
-        name: "/usr/local/lib/docker/cli-plugins"
-        owner: root
-        group: root
-        mode: "755"
-        state: directory
+    # Compose is installed by vagrant docker provisioner via repo.
+    # - name: CREATE DOCKER PLUGINS DIR
+    #   become: true
+    #   file:
+    #     name: "/usr/local/lib/docker/cli-plugins"
+    #     owner: root
+    #     group: root
+    #     mode: "755"
+    #     state: directory
 
-    - name: DOWNLOAD DOCKER-COMPOSE {{ DOCKER_COMPOSE_VERSION }}
+    # - name: DOWNLOAD DOCKER-COMPOSE {{ DOCKER_COMPOSE_VERSION }}
+    #   become: true
+    #   get_url:
+    #     url: "https://github.com/docker/compose/releases/download/\
+    #           {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64"
+    #     dest: "/usr/local/lib/docker/cli-plugins/docker-compose"
+    #     mode: "755"
+    #     # TOFIX - doesn't seem to work because of redirects
+    #     checksum: "sha256:https://github.com/docker/compose/releases/download/\
+    #           {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64.sha256"
+
+
+- name: INSTALL CONTAINER-LAB
+  hosts: all
+  tags: install_container_lab
+
+  vars:
+    CONTAINERLAB_VERSION: "0.26.1"
+
+  tasks:
+
+    - name: DOWNLOAD CONTAINERLAB DEB {{ CONTAINERLAB_VERSION }}
       become: true
       get_url:
-        url: "https://github.com/docker/compose/releases/download/\
-              {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64"
-        dest: "/usr/local/lib/docker/cli-plugins/docker-compose"
-        mode: "755"
-        # TOFIX - doesn't seem to work because of redirects
-        checksum: "sha256:https://github.com/docker/compose/releases/download/\
-              {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64.sha256"
+        url: "https://github.com/srl-labs/containerlab/releases/download/\
+              v{{ CONTAINERLAB_VERSION }}/\
+              containerlab_{{ CONTAINERLAB_VERSION }}_linux_amd64.deb"
+        dest: "/tmp/containerlab.deb"
+        mode: "644"
+        checksum: "sha256:d465103152b9dba67bf0c569488f1a2098c6aa9f4372b010b5e8a4a4e69a4836"
+
+    - name: INSTALL CONTAINERLAB {{ CONTAINERLAB_VERSION }}
+      become: true
+      shell: |
+        dpkg -i /tmp/containerlab.deb
+        rm /tmp/containerlab.deb
+
+
+- name: INSTALL HASHICORP TOOLS
+  hosts: all
+  tags: install_hashicorp
+
+  tasks:
+    - name: ADD HASHICORP APT SIGNING KEY
+      become: true
+      ansible.builtin.apt_key:
+        url: "https://apt.releases.hashicorp.com/gpg"
+        state: present
+
+    - name: ADD HASHICORP APT REPOSITORY
+      become: true
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com jammy main"
+        state: present
+
+    - name: INSTALL PACKAGES VIA APT
+      become: true
+      apt:
+        name:
+          - packer
+          - terraform
+        state: latest
+        install_recommends: false
+
+
+- name: INSTALL GOLANG
+  hosts: all
+  tags: install_golang
+
+  vars:
+    GOLANG_VERSION: "1.18.1"
+
+  tasks:
+    - name:
+      become: true
+      ansible.builtin.shell: |
+        curl -sL -o /tmp/go.tar.gz "https://go.dev/dl/go{{ GOLANG_VERSION }}.linux-amd64.tar.gz"
+        rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go.tar.gz
+        rm /tmp/go.tar.gz
 
 
 - name: INSTALL OTHER PACKAGES
@@ -253,21 +323,10 @@
       loop: "{{ git_clone_list | list }}"
 
     - debug:
-        msg: "Ansible galaxy roles: {{ ansible_galaxy_list |
+        msg: "Ansible Galaxy Collections: {{ ansible_galaxy_list |
               json_query('[].name') }}"
 
     - name: INSTALL ANSIBLE GALAXY ROLES
-      command: "ansible-galaxy install {{ item.name }}"
+      command: "ansible-galaxy collection install {{ item.name }}"
       loop: "{{ ansible_galaxy_list | list }}"
 
-    - name: CREATE SYMLINKS
-      file:
-        src: "{{ item.src }}"
-        dest: "{{ item.dest }}"
-        state: link
-        force: true
-      loop:
-        - {src: '{{ python3_local }}/napalm_ansible/modules/',
-           dest: '{{ ansible_local }}/plugins/modules/napalm_ansible'}
-        - {src: '{{ python3_local }}/napalm_ansible/plugins/action/',
-           dest: '{{ ansible_local }}/plugins/action/napalm_ansible'}
