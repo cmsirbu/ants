@@ -467,6 +467,40 @@ ants:
             netsim-tools are bringing infrastructure-as-code concepts to
             networking labs.
 
+        - name: scrapli
+          installed_by: pip3
+          url: https://github.com/carlmontanari/scrapli
+          docs: https://carlmontanari.github.io/scrapli/
+          description: >-
+            Fast, flexible, sync/async, Python screen scraping
+            client specifically for network devices.
+
+        - name: scrapli_netconf
+          installed_by: pip3
+          url: https://github.com/scrapli/scrapli_netconf
+          docs: https://scrapli.github.io/scrapli_netconf/
+          description: >-
+             Netconf driver built on top of scrapli.
+
+        - name: scrapli-cfg
+          installed_by: pip3
+          url: https://github.com/scrapli/scrapli_cfg
+          docs: https://scrapli.github.io/scrapli_cfg/
+          description: >-
+            Utility that accepts a scrapli Telnet or SSH connection
+            and provides configuration management capabilities.
+            scrapli_cfg allows you to load candidate configurations
+            for merge or replace operations, generate diffs of the
+            current vs candidate, and of course commit or abort the
+            candidate configuration.
+
+        - name: scrapli-community
+          installed_by: pip3
+          url: https://github.com/scrapli/scrapli_community
+          docs: https://scrapli.github.io/scrapli_community/
+          description: >-
+            Extra platforms that are not part of the core scrapli.
+
         # TODO: Enable once restrictive outdated dependencies are fixed.
         # - name: schema-enforcer
         #   installed_by: pip3

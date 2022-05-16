@@ -7,6 +7,8 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ## [Unreleased]
 
+## [v22.05.0]
+
 ### Added
 
 - This [CHANGELOG](/CHANGELOG.md).
@@ -16,6 +18,8 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 - Added `containerlab 0.26.1`.
 - Added `terraform` and `packer`, together with the Hashicorp `apt` repo.
 - Added `golang 1.18.1`.
+- Added `scrapli`, `scrapli-netconf`, `scrapli-cfg`, and `scrapli-community`.
+- Added `vale`.
 
 ### Removed
 
@@ -29,9 +33,6 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 - Updated to Ansible 5.
 - Updated base box to Ubuntu 22.04 (Jammy Jellyfish) - `ubuntu/jammy64 v20220506.0.0`.
 - Disabled Docker Compose install via Ansible since Vagrant provisioner takes care of that already.
-
-### Fixed
-
 
 ## [v21.02.0] and older
 

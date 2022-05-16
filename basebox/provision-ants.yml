@@ -149,7 +149,6 @@
     - name: INSTALL PYTHON3 PACKAGES VIA PIP3
       pip:
         requirements: "/vagrant/requirements.txt"
-        # 2020-resolver will become default in pip 20.3
         extra_args: --user -U
         executable: pip3
 
@@ -246,6 +245,34 @@
       shell: |
         dpkg -i /tmp/containerlab.deb
         rm /tmp/containerlab.deb
+
+
+- name: INSTALL VALE
+  hosts: all
+  tags: install_vale
+
+  vars:
+    VALE_VERSION: "2.17.0"
+
+  tasks:
+
+    - name: DOWNLOAD CONTAINERLAB DEB {{ CONTAINERLAB_VERSION }}
+      become: true
+      get_url:
+        url: "https://github.com/errata-ai/vale/releases/download/\
+              v{{ VALE_VERSION }}/\
+              vale_{{ VALE_VERSION }}_Linux_64-bit.tar.gz"
+        dest: "/tmp/vale.tar.gz"
+        mode: "644"
+        checksum: "sha256:d4f107141594debe06c9e5a5f385f9ed11f7b213536a6b69028a5914697d0ce6"
+
+    - name: INSTALL VALE {{ VALE_VERSION }}
+      become: true
+      shell: |
+        cd /usr/local/bin/
+        tar -xzf /tmp/vale.tar.gz .
+        rm LICENSE README.md
+        rm /tmp/vale.tar.gz
 
 
 - name: INSTALL HASHICORP TOOLS

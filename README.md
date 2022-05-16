@@ -20,14 +20,12 @@ It primarily leverages the power of [vagrant](https://www.vagrantup.com/) to qui
 
 All of the packages, tools and libraries that are pre-installed can be found in [ants.yml](basebox/ants.yml).
 
-- **python3**: `python3-dev jmespath jinja2 flask docker junos-eznc netaddr paramiko netmiko pyeapi pyiosxr textfsm ntc-templates nxapi-plumbing ncclient napalm napalm-logs ciscoconfparse dnspython click psutil boto3 colorama nornir tftpy pexpect pyats pyntc pyserial pysnmp virlutils pyyaml urllib3 requests xmltodict pyang pytest cryptography tox pylama pan-python pynxos jxmlease yangson yangify rich invoke`
-- **ansible**: `ansible-tower-cli ansible-lint napalm-ansible ntc-ansible Juniper.junos PaloAltoNetworks.paloaltonetworks`
+- **python3**: `python3-dev jmespath jinja2 flask docker junos-eznc netaddr paramiko netmiko pyeapi textfsm ntc-templates nxapi-plumbing ncclient napalm napalm-logs ciscoconfparse dnspython click psutil boto3 colorama nornir tftpy pexpect pyats pyntc pyserial pysnmp virlutils pyyaml urllib3 requests xmltodict pyang pytest cryptography tox pylama pan-python pynxos jxmlease yangson yangify rich invoke pynetbox pynautobot netutils ipython salt-sproxy netsim-tools scrapli scrapli_netconf scrapli-cfg scrapli-community`
+- **ansible**: `ansible-tower-cli ansible-lint networktocode.nautobot napalm.napalm`
 - **system**: `git bash zsh vim make tree curl tcpdump sshpass tshark telnet htop openssh-client snmp nmap netcat-openbsd iputils-arping iputils-ping iputils-tracepath net-tools fping nnn build-essential libxml2-dev libxml2-utils libxslt1-dev libffi-dev libssl-dev`
-- **containers**: `docker-ce`
+- **containers**: `docker-ce docker-compose`
 
-**Important note about Python 2.7**: It is officially end of life from early 2020. In the ANTS environment, all packages are pre-installed under Python 3 only.
-
-### Why Vagrant? 
+### Why Vagrant?
 
 Because it allows you to easily **create, use and destroy** the same reproducible development environment anywhere.
 
