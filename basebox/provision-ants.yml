@@ -270,7 +270,7 @@
       become: true
       shell: |
         cd /usr/local/bin/
-        tar -xzf /tmp/vale.tar.gz .
+        tar -xzf /tmp/vale.tar.gz
         rm LICENSE README.md
         rm /tmp/vale.tar.gz
 

@@ -2,7 +2,7 @@
 
 # ANTS: Awesome Networking Tools Sandbox
 
-**ANTS** is a sandbox VM (Virtual Machine) preloaded with tools and libraries useful for network programming and automation. It includes `ansible`, `python3`, `docker` and customized bash/vim plus [many networking related libraries](#wondering-whats-installed) for your enjoyment.
+**ANTS** is a sandbox VM (Virtual Machine) preloaded with tools and libraries useful for network programming and automation. It includes `ansible`, `python3`, and `docker`, with customized bash/vim configurations, plus [many networking related libraries](#wondering-whats-installed) for your enjoyment.
 
 It primarily leverages the power of [vagrant](https://www.vagrantup.com/) to quickly start (and easily rebuild from scratch) a sandbox for you to develop and experiment without cluttering your host machine.
 
@@ -29,13 +29,13 @@ All of the packages, tools and libraries that are pre-installed can be found in 
 
 Because it allows you to easily **create, use and destroy** the same reproducible development environment anywhere.
 
-### Can I just get a VM?
+### Can I just get a VM image?
 
-`EXPERIMENTAL` If you **just want a VM**, you can download an `ova` file from the [releases page](https://github.com/cmsirbu/ants/releases). Right now it's an export of the vagrant box, so you can use `vagrant/vagrant` to log in. You'll have to set up your own network adapters to use SSH (as the default is outbound NAT only) and there is no shared folder.
+Older releases had an export of the Vagrant VM, but it wasn't really that useful. With the planned migration to packer, I expect to have a properly built `ova` for each release again.
 
 ## Building your own ANTS VM
 
-The ANTS vagrant box is built from scratch using the scripts found in the [basebox](basebox) folder. If you clone this repository and run `vagrant up` in the `basebox` folder, a fresh Ubuntu 18.04 box will be downloaded and then the ANTS ansible playbook will be run **inside it** to install everything else (you still only need virtualbox and vagrant on your machine).
+The ANTS vagrant box is built from scratch using the scripts found in the [basebox](basebox) folder. If you clone this repository and run `vagrant up` in the `basebox` folder, a fresh Ubuntu box will be downloaded and then the ANTS ansible playbook will be run **inside it** to install everything else (you still only need virtualbox and vagrant on your machine).
 
 If you don't want to use `vagrant` at all, you can run the shell commands from the [basebox Vagrantfile](basebox/Vagrantfile) and the [ansible playbook](basebox/provision-ants.yml) in a VM of your choosing - just keep in mind you're on your own!
 
