@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/cmsirbu/ants.svg?branch=master)](https://travis-ci.org/cmsirbu/ants)
-
 # ANTS: Awesome Networking Tools Sandbox
 
 **ANTS** is a sandbox VM (Virtual Machine) preloaded with tools and libraries useful for network programming and automation. It includes `ansible`, `python3`, and `docker`, with customized bash/vim configurations, plus [many networking related libraries](#wondering-whats-installed) for your enjoyment.
