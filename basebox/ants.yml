@@ -105,7 +105,7 @@ ants:
 
         - name: textfsm
           installed_by: pip3
-          #version: "==1.1.3"
+          # version: "==1.1.3"
           url: https://github.com/google/textfsm
           docs: https://github.com/google/textfsm/wiki/TextFSM
           description: >-
@@ -299,7 +299,7 @@ ants:
 
         - name: requests
           installed_by: pip3
-          #version: ">=2.20.0"
+          # version: ">=2.20.0"
           url: https://github.com/requests/requests
           docs: http://docs.python-requests.org/en/master/
           description: >-
@@ -335,7 +335,7 @@ ants:
 
         - name: cryptography
           installed_by: pip3
-          #version: ">=2.6.1"
+          # version: ">=2.6.1"
           url: https://github.com/pytest-dev/pytest/
           docs: https://docs.pytest.org/en/latest/
           description: >-
@@ -386,7 +386,7 @@ ants:
 
         - name: yangson
           installed_by: pip3
-          #version: "==1.4.13"
+          # version: "==1.4.13"
           url: https://github.com/CZ-NIC/yangson
           docs: https://yangson.labs.nic.cz/
           description: >-
