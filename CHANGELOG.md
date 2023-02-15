@@ -7,6 +7,35 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ## [Unreleased]
 
+## [v23.02.0]
+
+This is the last major full-fat release with many Python libraries pre-installed. Due to dependency hell type issues making each release a bit of a struggle, the path onwards will be to use a leaner base with separate environments managed via `poetry` and `pyenv` to install tools as needed.
+
+### Added
+
+- Set up `.gitconfig` file to set the default branch to `main`.
+- Symlink for `docker-compose` so it works alongside `docker compose`.
+- Installed `poetry 1.3.2` and `pyenv 2.3.13`.
+
+### Removed
+
+- Disabled install of `pyats` and `salt-sproxy` via pip due to dependency clashes.
+- Unpinned packages: `textfsm requests cryptography`.
+
+### Changed
+
+- Updated to Ansible 7.
+- Updated base box to Ubuntu 22.04 (Jammy Jellyfish) - `ubuntu/jammy64 v20230215.0.0`.
+- Tweaks to `bash.sh` aliases and prompt (which is now multiline to help with narrow terminals and nested folder paths).
+    + New bash alias: `diff` for colorized unified diff`.
+    + New bash alias: `ad` for `ansible-doc`.
+    + New bash alias: `gls` for `gl` (pretty git log) with signatures.
+- Rename `netsim-tools` to `networklab`.
+- Updated `containerlab` to `0.36.1`.
+- Updated `vale` to `2.23.0`.
+- Updated `go` to `1.20.1`.
+
+
 ## [v22.05.0]
 
 ### Added

@@ -26,8 +26,6 @@
         chmod a-x /etc/update-motd.d/*
         echo "PrintLastLog no" >> /etc/ssh/sshd_config
         systemctl reload ssh.service
-      args:
-        warn: false
 
     - name: SET HOSTNAME
       become: true
@@ -71,6 +69,8 @@
         - {src: 'files/vim/vimrc', dest: '/home/vagrant/.vimrc',
            owner: vagrant, group: vagrant, mode: 644}
         - {src: 'files/vim/', dest: '/home/vagrant/.vim',
+           owner: vagrant, group: vagrant, mode: preserve}
+        - {src: 'files/.gitconfig', dest: '/home/vagrant/.gitconfig',
            owner: vagrant, group: vagrant, mode: preserve}
 
     - name: BASHRC FOR USER - VAGRANT
@@ -199,7 +199,8 @@
         published_ports: "{{ item.host_port }}:{{ item.container_port }}"
       loop: "{{ docker_start_list | list }}"
 
-    # Compose is installed by vagrant docker provisioner via repo.
+    # DEPRECATED - Compose is installed by vagrant docker provisioner via repo.
+    # For non-vagrant install use apt install docker-compose-plugin
     # - name: CREATE DOCKER PLUGINS DIR
     #   become: true
     #   file:
@@ -220,13 +221,20 @@
     #     checksum: "sha256:https://github.com/docker/compose/releases/download/\
     #           {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64.sha256"
 
+    - name: CREATE SYMLINK FOR DOCKER-COMPOSE
+      become: true
+      file:
+        src: "/usr/libexec/docker/cli-plugins/docker-compose"
+        dest: "/usr/local/bin/docker-compose"
+        state: "link"
+
 
 - name: INSTALL CONTAINER-LAB
   hosts: all
   tags: install_container_lab
 
   vars:
-    CONTAINERLAB_VERSION: "0.26.1"
+    CONTAINERLAB_VERSION: "0.36.1"
 
   tasks:
 
@@ -238,7 +246,7 @@
               containerlab_{{ CONTAINERLAB_VERSION }}_linux_amd64.deb"
         dest: "/tmp/containerlab.deb"
         mode: "644"
-        checksum: "sha256:d465103152b9dba67bf0c569488f1a2098c6aa9f4372b010b5e8a4a4e69a4836"
+        checksum: "sha256:3d75ec8904b71f308a066cdd176b211b4ce41ec645b6894ee8f722534123fd26"
 
     - name: INSTALL CONTAINERLAB {{ CONTAINERLAB_VERSION }}
       become: true
@@ -252,7 +260,7 @@
   tags: install_vale
 
   vars:
-    VALE_VERSION: "2.17.0"
+    VALE_VERSION: "2.23.0"
 
   tasks:
 
@@ -264,7 +272,7 @@
               vale_{{ VALE_VERSION }}_Linux_64-bit.tar.gz"
         dest: "/tmp/vale.tar.gz"
         mode: "644"
-        checksum: "sha256:d4f107141594debe06c9e5a5f385f9ed11f7b213536a6b69028a5914697d0ce6"
+        checksum: "sha256:0f2de03a1c177a5a448f95bdbc27e075279dbdea28bdd0c230ccb9af7b230df8"
 
     - name: INSTALL VALE {{ VALE_VERSION }}
       become: true
@@ -307,7 +315,7 @@
   tags: install_golang
 
   vars:
-    GOLANG_VERSION: "1.18.1"
+    GOLANG_VERSION: "1.20.1"
 
   tasks:
     - name:
@@ -316,6 +324,34 @@
         curl -sL -o /tmp/go.tar.gz "https://go.dev/dl/go{{ GOLANG_VERSION }}.linux-amd64.tar.gz"
         rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go.tar.gz
         rm /tmp/go.tar.gz
+
+
+- name: INSTALL POETRY
+  hosts: all
+  tags: install_poetry
+
+  vars:
+    POETRY_VERSION: "1.3.2"
+
+  tasks:
+    - name:
+      ansible.builtin.shell: |
+        curl -sSL https://install.python-poetry.org | POETRY_VERSION={{ POETRY_VERSION }} python3 -
+        /home/vagrant/.local/bin/poetry completions bash >> ~/.bash_completion
+
+
+- name: INSTALL PYENV
+  hosts: all
+  tags: install_pyenv
+
+  vars:
+    PYENV_VERSION: "2.3.13"
+
+  tasks:
+    - name:
+      ansible.builtin.shell: |
+        export PYENV_GIT_TAG=v{{ PYENV_VERSION }}
+        curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
 
 - name: INSTALL OTHER PACKAGES

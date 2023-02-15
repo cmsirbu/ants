@@ -105,7 +105,7 @@ ants:
 
         - name: textfsm
           installed_by: pip3
-          version: "==1.1.2"
+          #version: "==1.1.3"
           url: https://github.com/google/textfsm
           docs: https://github.com/google/textfsm/wiki/TextFSM
           description: >-
@@ -239,13 +239,13 @@ ants:
             controlling them; and responding to expected patterns in their
             output.
 
-        - name: pyats
-          installed_by: pip3
-          url: https://developer.cisco.com/pyats/
-          docs: https://developer.cisco.com/docs/pyats/
-          description: >-
-            Cisco pyATS, an end-to-end testing ecosystem, specializing in
-            data-driven and reusable testing.
+        # - name: pyats
+        #   installed_by: pip3
+        #   url: https://developer.cisco.com/pyats/
+        #   docs: https://developer.cisco.com/docs/pyats/
+        #   description: >-
+        #     Cisco pyATS, an end-to-end testing ecosystem, specializing in
+        #     data-driven and reusable testing.
 
         - name: pyntc
           installed_by: pip3
@@ -299,7 +299,7 @@ ants:
 
         - name: requests
           installed_by: pip3
-          version: ">=2.20.0"
+          #version: ">=2.20.0"
           url: https://github.com/requests/requests
           docs: http://docs.python-requests.org/en/master/
           description: >-
@@ -335,7 +335,7 @@ ants:
 
         - name: cryptography
           installed_by: pip3
-          version: ">=2.6.1"
+          #version: ">=2.6.1"
           url: https://github.com/pytest-dev/pytest/
           docs: https://docs.pytest.org/en/latest/
           description: >-
@@ -452,19 +452,19 @@ ants:
           description: >-
             A powerful interactive shell for Python development.
 
-        - name: salt-sproxy
-          installed_by: pip3
-          url: https://github.com/mirceaulinic/salt-sproxy
-          docs: https://salt-sproxy.readthedocs.io/en/latest/
-          description: >-
-            A powerful interactive shell for Python development.
+        # - name: salt-sproxy
+        #   installed_by: pip3
+        #   url: https://github.com/mirceaulinic/salt-sproxy
+        #   docs: https://salt-sproxy.readthedocs.io/en/latest/
+        #   description: >-
+        #     A powerful interactive shell for Python development.
 
-        - name: netsim-tools
+        - name: networklab
           installed_by: pip3
-          url: https://github.com/ipspace/netsim-tools
-          docs: https://netsim-tools.readthedocs.io/en/latest/install.html
+          url: https://github.com/ipspace/netlab
+          docs: https://netsim-tools.readthedocs.io/en/latest/
           description: >-
-            netsim-tools are bringing infrastructure-as-code concepts to
+            netlab is bringing infrastructure-as-code concepts to
             networking labs.
 
         - name: scrapli
@@ -518,7 +518,7 @@ ants:
 
         - name: ansible
           installed_by: pip3
-          version: "~=5.0"
+          version: "~=7.0"
           url: https://github.com/ansible/ansible
           docs: https://docs.ansible.com/ansible/latest/index.html
           description: >-

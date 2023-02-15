@@ -7,7 +7,7 @@ netaddr
 paramiko
 netmiko
 pyeapi
-textfsm ==1.1.2
+textfsm
 ntc-templates
 nxapi-plumbing
 ncclient
@@ -22,18 +22,17 @@ colorama
 nornir
 tftpy
 pexpect
-pyats
 pyntc
 pyserial
 pysnmp
 virlutils
 pyyaml
 urllib3
-requests >=2.20.0
+requests
 xmltodict
 pyang
 pytest
-cryptography >=2.6.1
+cryptography
 tox
 pylama
 pan-python
@@ -47,12 +46,11 @@ pynetbox
 pynautobot
 netutils
 ipython
-salt-sproxy
-netsim-tools
+networklab
 scrapli
 scrapli_netconf
 scrapli-cfg
 scrapli-community
-ansible ~=5.0
+ansible ~=7.0
 ansible-tower-cli
 ansible-lint
