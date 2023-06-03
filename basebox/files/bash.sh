@@ -46,24 +46,28 @@ shopt -s checkwinsize
 # Automatically trim long paths in the prompt
 PROMPT_DIRTRIM=3
 
-# Enable history expansion with space
-# E.g. typing !!<space> will replace the !! with your last command
-bind Space:magic-space
+# standard output is a tty, do interactive initialization
+if [ -t 1 ]
+then
+    # Enable history expansion with space
+    # E.g. typing !!<space> will replace the !! with your last command
+    bind Space:magic-space
+
+    # Perform file completion in a case insensitive fashion
+    bind "set completion-ignore-case on"
+
+    # Treat hyphens and underscores as equivalent
+    bind "set completion-map-case on"
+
+    # Display matches for ambiguous patterns at first tab press
+    bind "set show-all-if-ambiguous on"
+
+    # Immediately add a trailing slash when autocompleting symlinks to directories
+    bind "set mark-symlinked-directories on"
+fi
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
-
-# Perform file completion in a case insensitive fashion
-bind "set completion-ignore-case on"
-
-# Treat hyphens and underscores as equivalent
-bind "set completion-map-case on"
-
-# Display matches for ambiguous patterns at first tab press
-bind "set show-all-if-ambiguous on"
-
-# Immediately add a trailing slash when autocompleting symlinks to directories
-bind "set mark-symlinked-directories on"
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
@@ -129,27 +133,31 @@ export PS2="\[\033[00;33m\]> \[\033[00m\]";
 ## ALIASES
 ##########################################
 
-alias ll='ls -ahlF'
-alias la='ls -ACF'
-alias l='ls -ahlF'
-alias df='df -h'
+alias ll="ls -ahlF"
+alias la="ls -ACF"
+alias l="ls -ahlF"
+alias df="df -h"
 alias diff="diff -u --color"
 
-alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
+alias cd..="cd ../"                         # Go back 1 directory level (for fast typers)
+alias ..="cd ../"                           # Go back 1 directory level
+alias ...="cd ../../"                       # Go back 2 directory levels
+alias .3="cd ../../../"                     # Go back 3 directory levels
+alias .4="cd ../../../../"                  # Go back 4 directory levels
+alias .5="cd ../../../../../"               # Go back 5 directory levels
+alias .6="cd ../../../../../../"            # Go back 6 directory levels
 
-alias ip='ip --color'
-alias ipb='ip --color --brief'
+alias ip="ip --color"
+alias ipb="ip --color --brief"
 
 alias ap="ansible-playbook"
 alias ad="ansible-doc"
 alias va="source venv/bin/activate"
 
+alias aptiupdate="sudo apt-get update && sudo apt-get dist-upgrade"
+alias apticlean="sudo apt-get autoremove && sudo apt-get autoclean && sudo apt-get clean"
+
+# The git corner
 alias gl="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai]\" --decorate --graph"
 alias gll="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai] %n%b\" --decorate --graph --numstat"
 alias gls="git log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn %ai] %n%b\" --decorate --graph --numstat --show-signature"
