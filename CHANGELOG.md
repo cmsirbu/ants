@@ -17,7 +17,7 @@ After successful testing with the `23.11.0.lite` version of the box, the base bo
 
 ### Changed
 
-- ANTS is built from the `debian/bookworm64` box instead of Ubuntu.
+- ANTS is built from the `debian/bookworm64` box instead of Ubuntu with VirtualBox `7.0.20`.
 - Python packages are not installed via the system python inside the user folder. All CLI tools are installed through `pipx` in dedicated virtual environments.
 - Updated `ansible-core` to `2.17`.
 - Updated `containerlab` to `0.56.0`.
