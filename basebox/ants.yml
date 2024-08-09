@@ -39,19 +39,19 @@ ants:
           docs: https://github.com/jmespath/jmespath.py
           description: JMESPath is a query language for JSON.
 
-        - name: jinja2
-          installed_by: pip3
-          url: http://jinja.pocoo.org/
-          docs: http://jinja.pocoo.org/docs/latest/
-          description: Jinja2 is a templating engine for Python.
+        # - name: jinja2
+        #   installed_by: pip3
+        #   url: https://jinja.palletsprojects.com/
+        #   docs: https://jinja.palletsprojects.com/en/latest/
+        #   description: Jinja2 is a templating engine for Python.
 
-        - name: flask
-          installed_by: pip3
-          url: http://flask.pocoo.org/
-          docs: http://flask.pocoo.org/docs/1.0/
-          description: >-
-            Flask is a microframework for Python based on Werkzeug, Jinja 2 and
-            good intentions.
+        # - name: flask
+        #   installed_by: pip3
+        #   url: http://flask.pocoo.org/
+        #   docs: http://flask.pocoo.org/docs/1.0/
+        #   description: >-
+        #     Flask is a microframework for Python based on Werkzeug, Jinja 2 and
+        #     good intentions.
 
         - name: docker
           installed_by: pip3
@@ -60,184 +60,184 @@ ants:
           description: >-
             A Python library for the Docker Engine API.
 
-        - name: junos-eznc
-          installed_by: pip3
-          # version: "==2.2.1"
-          url: https://github.com/Juniper/py-junos-eznc
-          docs: "https://www.juniper.net/documentation/en_US/junos-pyez/informa\
-                tion-products/pathway-pages/junos-pyez-developer-guide.html"
-          description: >-
-            Python library for Junos automation - pyEZ
+        # - name: junos-eznc
+        #   installed_by: pip3
+        #   # version: "==2.2.1"
+        #   url: https://github.com/Juniper/py-junos-eznc
+        #   docs: "https://www.juniper.net/documentation/en_US/junos-pyez/informa\
+        #         tion-products/pathway-pages/junos-pyez-developer-guide.html"
+        #   description: >-
+        #     Python library for Junos automation - pyEZ
 
-        - name: netaddr
-          installed_by: pip3
-          url: https://github.com/drkjam/netaddr/
-          docs: https://netaddr.readthedocs.io/en/latest/
-          description: >-
-            A network address manipulation library for Python. IPv4, IPv6 and
-            MACs.
+        # - name: netaddr
+        #   installed_by: pip3
+        #   url: https://github.com/drkjam/netaddr/
+        #   docs: https://netaddr.readthedocs.io/en/latest/
+        #   description: >-
+        #     A network address manipulation library for Python. IPv4, IPv6 and
+        #     MACs.
 
-        - name: paramiko
-          installed_by: pip3
-          url: https://github.com/paramiko/paramiko/
-          docs: http://docs.paramiko.org/
-          description: >-
-            Paramiko is a Python (2.7, 3.4+) implementation of the SSHv2
-            protocol, providing both client and server functionality.
+        # - name: paramiko
+        #   installed_by: pip3
+        #   url: https://github.com/paramiko/paramiko/
+        #   docs: http://docs.paramiko.org/
+        #   description: >-
+        #     Paramiko is a Python (2.7, 3.4+) implementation of the SSHv2
+        #     protocol, providing both client and server functionality.
 
-        - name: netmiko
-          installed_by: pip3
-          # version: "<3.0.0"
-          url: https://github.com/ktbyers/netmiko
-          docs: https://github.com/ktbyers/netmiko#tutorials
-          description: >-
-            Multi-vendor library to simplify Paramiko SSH connections to network
-            devices.
+        # - name: netmiko
+        #   installed_by: pip3
+        #   # version: "<3.0.0"
+        #   url: https://github.com/ktbyers/netmiko
+        #   docs: https://github.com/ktbyers/netmiko#tutorials
+        #   description: >-
+        #     Multi-vendor library to simplify Paramiko SSH connections to network
+        #     devices.
 
-        - name: pyeapi
-          installed_by: pip3
-          url: https://github.com/arista-eosplus/pyeapi
-          docs: https://pyeapi.readthedocs.io/en/master/index.html
-          description: >-
-            The Python library for Arista's eAPI command API implementation
-            provides a client API work using eAPI and communicating with EOS
-            nodes.
+        # - name: pyeapi
+        #   installed_by: pip3
+        #   url: https://github.com/arista-eosplus/pyeapi
+        #   docs: https://pyeapi.readthedocs.io/en/master/index.html
+        #   description: >-
+        #     The Python library for Arista's eAPI command API implementation
+        #     provides a client API work using eAPI and communicating with EOS
+        #     nodes.
 
-        - name: textfsm
-          installed_by: pip3
-          # version: "==1.1.3"
-          url: https://github.com/google/textfsm
-          docs: https://github.com/google/textfsm/wiki/TextFSM
-          description: >-
-            Python module which implements a template based state machine for
-            parsing semi-formatted text. Originally developed to allow
-            programmatic access to information returned from the command line
-            interface (CLI) of networking devices.
+        # - name: textfsm
+        #   installed_by: pip3
+        #   # version: "==1.1.3"
+        #   url: https://github.com/google/textfsm
+        #   docs: https://github.com/google/textfsm/wiki/TextFSM
+        #   description: >-
+        #     Python module which implements a template based state machine for
+        #     parsing semi-formatted text. Originally developed to allow
+        #     programmatic access to information returned from the command line
+        #     interface (CLI) of networking devices.
 
-        - name: ntc-templates
-          installed_by: pip3
-          url: https://github.com/networktocode/ntc-templates
-          docs: https://github.com/networktocode/ntc-templates
-          description: >-
-            Repository of TextFSM Templates for Network Devices, and
-            Python wrapper for TextFSM's CliTable.
+        # - name: ntc-templates
+        #   installed_by: pip3
+        #   url: https://github.com/networktocode/ntc-templates
+        #   docs: https://github.com/networktocode/ntc-templates
+        #   description: >-
+        #     Repository of TextFSM Templates for Network Devices, and
+        #     Python wrapper for TextFSM's CliTable.
 
-        - name: nxapi-plumbing
-          installed_by: pip3
-          url: https://github.com/ktbyers/nxapi-plumbing
-          docs: https://github.com/ktbyers/nxapi-plumbing
-          description: >-
-            A low-level library for managing Cisco devices through NX-API using
-            JSON-RPC and XML.
+        # - name: nxapi-plumbing
+        #   installed_by: pip3
+        #   url: https://github.com/ktbyers/nxapi-plumbing
+        #   docs: https://github.com/ktbyers/nxapi-plumbing
+        #   description: >-
+        #     A low-level library for managing Cisco devices through NX-API using
+        #     JSON-RPC and XML.
 
-        - name: ncclient
-          installed_by: pip3
-          url: https://github.com/ncclient/ncclient
-          docs: http://ncclient.readthedocs.org
-          description: >-
-            ncclient is a Python library that facilitates client-side scripting
-            and application development around the NETCONF protocol.
+        # - name: ncclient
+        #   installed_by: pip3
+        #   url: https://github.com/ncclient/ncclient
+        #   docs: http://ncclient.readthedocs.org
+        #   description: >-
+        #     ncclient is a Python library that facilitates client-side scripting
+        #     and application development around the NETCONF protocol.
 
-        - name: napalm
-          installed_by: pip3
-          url: https://github.com/napalm-automation/napalm
-          docs: https://napalm.readthedocs.io/
-          description: >-
-            NAPALM (Network Automation and Programmability Abstraction Layer
-            with Multivendor support) is a Python library that implements a set
-            of functions to interact with different router vendor devices using
-            a unified API.
+        # - name: napalm
+        #   installed_by: pip3
+        #   url: https://github.com/napalm-automation/napalm
+        #   docs: https://napalm.readthedocs.io/
+        #   description: >-
+        #     NAPALM (Network Automation and Programmability Abstraction Layer
+        #     with Multivendor support) is a Python library that implements a set
+        #     of functions to interact with different router vendor devices using
+        #     a unified API.
 
-        - name: napalm-logs
-          installed_by: pip3
-          url: https://github.com/napalm-automation/napalm-logs
-          docs: https://napalm-logs.readthedocs.io/en/latest/
-          description: >-
-            Python library to parse syslog messages from network devices and
-            produce JSON serializable Python objects, in a vendor agnostic
-            shape. The output objects are structured following the OpenConfig
-            or IETF YANG models.
+        # - name: napalm-logs
+        #   installed_by: pip3
+        #   url: https://github.com/napalm-automation/napalm-logs
+        #   docs: https://napalm-logs.readthedocs.io/en/latest/
+        #   description: >-
+        #     Python library to parse syslog messages from network devices and
+        #     produce JSON serializable Python objects, in a vendor agnostic
+        #     shape. The output objects are structured following the OpenConfig
+        #     or IETF YANG models.
 
-        - name: ciscoconfparse
-          installed_by: pip3
-          url: https://github.com/mpenning/ciscoconfparse
-          docs: http://www.pennington.net/py/ciscoconfparse/
-          description: >-
-            ciscoconfparse is a Python library, which parses through Cisco
-            IOS-style (and other vendor) configurations.
+        # - name: ciscoconfparse
+        #   installed_by: pip3
+        #   url: https://github.com/mpenning/ciscoconfparse
+        #   docs: http://www.pennington.net/py/ciscoconfparse/
+        #   description: >-
+        #     ciscoconfparse is a Python library, which parses through Cisco
+        #     IOS-style (and other vendor) configurations.
 
-        - name: dnspython
-          installed_by: pip3
-          url: http://www.dnspython.org/
-          docs: http://www.dnspython.org/docs/1.16.0/
-          description: >-
-            dnspython is a DNS toolkit for Python. It supports almost all record
-            types. It can be used for queries, zone transfers, and dynamic
-            updates. It supports TSIG authenticated messages and EDNS0.
+        # - name: dnspython
+        #   installed_by: pip3
+        #   url: http://www.dnspython.org/
+        #   docs: http://www.dnspython.org/docs/1.16.0/
+        #   description: >-
+        #     dnspython is a DNS toolkit for Python. It supports almost all record
+        #     types. It can be used for queries, zone transfers, and dynamic
+        #     updates. It supports TSIG authenticated messages and EDNS0.
 
-        - name: click
-          installed_by: pip3
-          url: https://github.com/pallets/click
-          docs: https://click.palletsprojects.com/en/7.x/
-          description: >-
-            Click is a Python package for creating beautiful command line
-            interfaces in a composable way with as little code as necessary.
-            It’s the “Command Line Interface Creation Kit”. It’s highly
-            configurable but comes with sensible defaults out of the box.
+        # - name: click
+        #   installed_by: pip3
+        #   url: https://github.com/pallets/click
+        #   docs: https://click.palletsprojects.com/en/7.x/
+        #   description: >-
+        #     Click is a Python package for creating beautiful command line
+        #     interfaces in a composable way with as little code as necessary.
+        #     It’s the “Command Line Interface Creation Kit”. It’s highly
+        #     configurable but comes with sensible defaults out of the box.
 
-        - name: psutil
-          installed_by: pip3
-          url: https://github.com/giampaolo/psutil
-          docs: https://psutil.readthedocs.io/en/latest/#
-          description: >-
-            psutil (process and system utilities) is a cross-platform library
-            for retrieving information on running processes and system
-            utilization (CPU, memory, disks, network, sensors) in Python.
+        # - name: psutil
+        #   installed_by: pip3
+        #   url: https://github.com/giampaolo/psutil
+        #   docs: https://psutil.readthedocs.io/en/latest/#
+        #   description: >-
+        #     psutil (process and system utilities) is a cross-platform library
+        #     for retrieving information on running processes and system
+        #     utilization (CPU, memory, disks, network, sensors) in Python.
 
-        - name: boto3
-          installed_by: pip3
-          url: https://github.com/boto/boto3
-          docs:
-            https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
-          description: >-
-            Boto3 is the Amazon Web Services (AWS) Software Development Kit
-            (SDK) for Python, which allows Python developers to write software
-            that makes use of services like Amazon S3 and Amazon EC2.
+        # - name: boto3
+        #   installed_by: pip3
+        #   url: https://github.com/boto/boto3
+        #   docs:
+        #     https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+        #   description: >-
+        #     Boto3 is the Amazon Web Services (AWS) Software Development Kit
+        #     (SDK) for Python, which allows Python developers to write software
+        #     that makes use of services like Amazon S3 and Amazon EC2.
 
-        - name: colorama
-          installed_by: pip3
-          # version: "<0.5.0,>=0.4.1"
-          url: https://github.com/tartley/colorama
-          docs: https://github.com/tartley/colorama
-          description: >-
-            Simple cross-platform colored terminal text in Python
+        # - name: colorama
+        #   installed_by: pip3
+        #   # version: "<0.5.0,>=0.4.1"
+        #   url: https://github.com/tartley/colorama
+        #   docs: https://github.com/tartley/colorama
+        #   description: >-
+        #     Simple cross-platform colored terminal text in Python
 
-        - name: nornir
-          installed_by: pip3
-          url: https://github.com/nornir-automation/nornir
-          docs: https://nornir.readthedocs.io/en/stable/
-          description: >-
-            Nornir is a pure Python automation framework intented to be used
-            directly from Python. While most automation frameworks use their
-            own Domain Specific Language (DSL) which you use to describe what
-            you want to have done, Nornir lets you control everything from
-            Python.
+        # - name: nornir
+        #   installed_by: pip3
+        #   url: https://github.com/nornir-automation/nornir
+        #   docs: https://nornir.readthedocs.io/en/stable/
+        #   description: >-
+        #     Nornir is a pure Python automation framework intented to be used
+        #     directly from Python. While most automation frameworks use their
+        #     own Domain Specific Language (DSL) which you use to describe what
+        #     you want to have done, Nornir lets you control everything from
+        #     Python.
 
-        - name: tftpy
-          installed_by: pip3
-          url: https://github.com/msoulier/tftpy
-          docs: http://tftpy.sourceforge.net/sphinx/index.html
-          description: >-
-            Python TFTP library
+        # - name: tftpy
+        #   installed_by: pip3
+        #   url: https://github.com/msoulier/tftpy
+        #   docs: http://tftpy.sourceforge.net/sphinx/index.html
+        #   description: >-
+        #     Python TFTP library
 
-        - name: pexpect
-          installed_by: pip3
-          url: https://github.com/pexpect/pexpect
-          docs: https://pexpect.readthedocs.io/en/stable/
-          description: >-
-            Pexpect is a pure Python module for spawning child applications;
-            controlling them; and responding to expected patterns in their
-            output.
+        # - name: pexpect
+        #   installed_by: pip3
+        #   url: https://github.com/pexpect/pexpect
+        #   docs: https://pexpect.readthedocs.io/en/stable/
+        #   description: >-
+        #     Pexpect is a pure Python module for spawning child applications;
+        #     controlling them; and responding to expected patterns in their
+        #     output.
 
         # - name: pyats
         #   installed_by: pip3
@@ -247,161 +247,161 @@ ants:
         #     Cisco pyATS, an end-to-end testing ecosystem, specializing in
         #     data-driven and reusable testing.
 
-        - name: pyntc
-          installed_by: pip3
-          url: https://github.com/networktocode/pyntc
-          docs:
-            https://github.com/networktocode/pyntc#getting-started-with-pyntc
-          description: >-
-            pyntc is an open source multi-vendor Python library that establishes
-            a common framework for working with different network APIs & device
-            types (including IOS devices).
+        # - name: pyntc
+        #   installed_by: pip3
+        #   url: https://github.com/networktocode/pyntc
+        #   docs:
+        #     https://github.com/networktocode/pyntc#getting-started-with-pyntc
+        #   description: >-
+        #     pyntc is an open source multi-vendor Python library that establishes
+        #     a common framework for working with different network APIs & device
+        #     types (including IOS devices).
 
-        - name: pyserial
-          installed_by: pip3
-          url: https://github.com/pyserial/pyserial
-          docs: https://pythonhosted.org/pyserial/
-          description: >-
-            This module encapsulates the access for the serial port. It provides
-            backends for Python running on Windows, OSX, Linux, BSD (possibly
-            any POSIX compliant system) and IronPython. The module named
-            "serial" automatically selects the appropriate backend.
+        # - name: pyserial
+        #   installed_by: pip3
+        #   url: https://github.com/pyserial/pyserial
+        #   docs: https://pythonhosted.org/pyserial/
+        #   description: >-
+        #     This module encapsulates the access for the serial port. It provides
+        #     backends for Python running on Windows, OSX, Linux, BSD (possibly
+        #     any POSIX compliant system) and IronPython. The module named
+        #     "serial" automatically selects the appropriate backend.
 
-        - name: pysnmp
-          installed_by: pip3
-          url: https://github.com/etingof/pysnmp
-          docs: http://snmplabs.com/pysnmp/
-          description: >-
-            This is a pure-Python, open source and free implementation of
-            v1/v2c/v3 SNMP engine distributed under 2-clause BSD license.
+        # - name: pysnmp
+        #   installed_by: pip3
+        #   url: https://github.com/etingof/pysnmp
+        #   docs: http://snmplabs.com/pysnmp/
+        #   description: >-
+        #     This is a pure-Python, open source and free implementation of
+        #     v1/v2c/v3 SNMP engine distributed under 2-clause BSD license.
 
-        - name: virlutils
-          installed_by: pip3
-          url: https://github.com/CiscoDevNet/virlutils
-          docs: https://github.com/CiscoDevNet/virlutils#virlutils
-          description: >-
-            A collection of utilities for interacting with Cisco VIRL
+        # - name: virlutils
+        #   installed_by: pip3
+        #   url: https://github.com/CiscoDevNet/virlutils
+        #   docs: https://github.com/CiscoDevNet/virlutils#virlutils
+        #   description: >-
+        #     A collection of utilities for interacting with Cisco VIRL
 
-        - name: pyyaml
-          installed_by: pip3
-          url: https://github.com/yaml/pyyaml
-          docs: https://pyyaml.org/wiki/PyYAMLDocumentation
-          description: >-
-            PyYAML is a YAML parser and emitter for Python.
+        # - name: pyyaml
+        #   installed_by: pip3
+        #   url: https://github.com/yaml/pyyaml
+        #   docs: https://pyyaml.org/wiki/PyYAMLDocumentation
+        #   description: >-
+        #     PyYAML is a YAML parser and emitter for Python.
 
-        - name: urllib3
-          installed_by: pip3
-          # version: "<1.26,>=1.23"
-          url: https://github.com/urllib3/urllib3
-          docs: https://urllib3.readthedocs.io/en/latest/
-          description: >-
-            urllib3 is a powerful, sanity-friendly HTTP client for Python.
+        # - name: urllib3
+        #   installed_by: pip3
+        #   # version: "<1.26,>=1.23"
+        #   url: https://github.com/urllib3/urllib3
+        #   docs: https://urllib3.readthedocs.io/en/latest/
+        #   description: >-
+        #     urllib3 is a powerful, sanity-friendly HTTP client for Python.
 
-        - name: requests
-          installed_by: pip3
-          # version: ">=2.20.0"
-          url: https://github.com/requests/requests
-          docs: http://docs.python-requests.org/en/master/
-          description: >-
-            Requests allows you to send organic, grass-fed HTTP/1.1 requests,
-            without the need for manual labor. There's no need to manually add
-            query strings to your URLs, or to form-encode your POST data.
-            Keep-alive and HTTP connection pooling are 100% automatic,
-            thanks to urllib3.
+        # - name: requests
+        #   installed_by: pip3
+        #   # version: ">=2.20.0"
+        #   url: https://github.com/requests/requests
+        #   docs: http://docs.python-requests.org/en/master/
+        #   description: >-
+        #     Requests allows you to send organic, grass-fed HTTP/1.1 requests,
+        #     without the need for manual labor. There's no need to manually add
+        #     query strings to your URLs, or to form-encode your POST data.
+        #     Keep-alive and HTTP connection pooling are 100% automatic,
+        #     thanks to urllib3.
 
-        - name: xmltodict
-          installed_by: pip3
-          url: https://github.com/martinblech/xmltodict
-          docs: https://github.com/martinblech/xmltodict
-          description: >-
-            xmltodict is a Python module that makes working with XML feel
-            like you are working with JSON.
+        # - name: xmltodict
+        #   installed_by: pip3
+        #   url: https://github.com/martinblech/xmltodict
+        #   docs: https://github.com/martinblech/xmltodict
+        #   description: >-
+        #     xmltodict is a Python module that makes working with XML feel
+        #     like you are working with JSON.
 
-        - name: pyang
-          installed_by: pip3
-          url: https://github.com/mbj4668/pyang
-          docs: https://github.com/mbj4668/pyang/wiki/Documentation
-          description: >-
-            An extensible YANG (RFC 6020/7950) validator. Provides a framework
-            for plugins that can convert YANG modules to other formats.
+        # - name: pyang
+        #   installed_by: pip3
+        #   url: https://github.com/mbj4668/pyang
+        #   docs: https://github.com/mbj4668/pyang/wiki/Documentation
+        #   description: >-
+        #     An extensible YANG (RFC 6020/7950) validator. Provides a framework
+        #     for plugins that can convert YANG modules to other formats.
 
-        - name: pytest
-          installed_by: pip3
-          url: https://github.com/pytest-dev/pytest/
-          docs: https://docs.pytest.org/en/latest/
-          description: >-
-            pytest is a mature full-featured Python testing tool that helps
-            you write better programs.
+        # - name: pytest
+        #   installed_by: pip3
+        #   url: https://github.com/pytest-dev/pytest/
+        #   docs: https://docs.pytest.org/en/latest/
+        #   description: >-
+        #     pytest is a mature full-featured Python testing tool that helps
+        #     you write better programs.
 
-        - name: cryptography
-          installed_by: pip3
-          # version: ">=2.6.1"
-          url: https://github.com/pytest-dev/pytest/
-          docs: https://docs.pytest.org/en/latest/
-          description: >-
-            cryptography includes both high level recipes and low level
-            interfaces to common cryptographic algorithms such as
-            symmetric ciphers, message digests, and key derivation functions.
+        # - name: cryptography
+        #   installed_by: pip3
+        #   # version: ">=2.6.1"
+        #   url: https://github.com/pytest-dev/pytest/
+        #   docs: https://docs.pytest.org/en/latest/
+        #   description: >-
+        #     cryptography includes both high level recipes and low level
+        #     interfaces to common cryptographic algorithms such as
+        #     symmetric ciphers, message digests, and key derivation functions.
 
-        - name: tox
-          installed_by: pip3
-          url: https://github.com/tox-dev/tox
-          docs: https://tox.readthedocs.io/en/latest/
-          description: >-
-            Command line driven CI frontend and development task automation
-            tool. At its core tox povides a convenient way to run arbitrary
-            commands in isolated environments to serve as a single entry point
-            for build, test and release activities.
+        # - name: tox
+        #   installed_by: pip3
+        #   url: https://github.com/tox-dev/tox
+        #   docs: https://tox.readthedocs.io/en/latest/
+        #   description: >-
+        #     Command line driven CI frontend and development task automation
+        #     tool. At its core tox povides a convenient way to run arbitrary
+        #     commands in isolated environments to serve as a single entry point
+        #     for build, test and release activities.
 
-        - name: pylama
-          installed_by: pip3
-          url: https://github.com/klen/pylama
-          docs: https://pylama.readthedocs.io/en/latest/
-          description: >-
-            Code audit tool for Python that wrap these tools: pycodestyle
-            pydocstyle PyFlakes Mccabe Pylint Radon eradicate
+        # - name: pylama
+        #   installed_by: pip3
+        #   url: https://github.com/klen/pylama
+        #   docs: https://pylama.readthedocs.io/en/latest/
+        #   description: >-
+        #     Code audit tool for Python that wrap these tools: pycodestyle
+        #     pydocstyle PyFlakes Mccabe Pylint Radon eradicate
 
-        - name: pan-python
-          installed_by: pip3
-          url: https://github.com/kevinsteves/pan-python
-          docs: https://github.com/kevinsteves/pan-python/tree/master/doc
-          description: >-
-            Python package for Palo Alto Networks Next-Generation Firewalls,
-            WildFire and AutoFocus.
+        # - name: pan-python
+        #   installed_by: pip3
+        #   url: https://github.com/kevinsteves/pan-python
+        #   docs: https://github.com/kevinsteves/pan-python/tree/master/doc
+        #   description: >-
+        #     Python package for Palo Alto Networks Next-Generation Firewalls,
+        #     WildFire and AutoFocus.
 
-        - name: pynxos
-          installed_by: pip3
-          url: https://github.com/networktocode/pynxos/
-          docs: https://github.com/networktocode/pynxos/
-          description: >-
-            A library for managing Cisco NX-OS devices through NX-API.
+        # - name: pynxos
+        #   installed_by: pip3
+        #   url: https://github.com/networktocode/pynxos/
+        #   docs: https://github.com/networktocode/pynxos/
+        #   description: >-
+        #     A library for managing Cisco NX-OS devices through NX-API.
 
-        - name: jxmlease
-          installed_by: pip3
-          url: https://github.com/Juniper/jxmlease
-          docs: https://jxmlease.readthedocs.io/en/stable/
-          description: >-
-            A Python module for converting XML to intelligent Python data
-            structures, and converting Python data structures to XML.
+        # - name: jxmlease
+        #   installed_by: pip3
+        #   url: https://github.com/Juniper/jxmlease
+        #   docs: https://jxmlease.readthedocs.io/en/stable/
+        #   description: >-
+        #     A Python module for converting XML to intelligent Python data
+        #     structures, and converting Python data structures to XML.
 
-        - name: yangson
-          installed_by: pip3
-          # version: "==1.4.13"
-          url: https://github.com/CZ-NIC/yangson
-          docs: https://yangson.labs.nic.cz/
-          description: >-
-            Yangson is a Python 3 library for working with JSON encoded
-            configuration and state data modelled using the YANG data
-            modelling language.
+        # - name: yangson
+        #   installed_by: pip3
+        #   # version: "==1.4.13"
+        #   url: https://github.com/CZ-NIC/yangson
+        #   docs: https://yangson.labs.nic.cz/
+        #   description: >-
+        #     Yangson is a Python 3 library for working with JSON encoded
+        #     configuration and state data modelled using the YANG data
+        #     modelling language.
 
-        - name: yangify
-          installed_by: pip3
-          url: https://github.com/networktocode/yangify
-          docs: https://yangify.readthedocs.io/en/latest/
-          description: >-
-            Yangify is a framework that allows you to easily write code
-            that can map structured and unstructured data into data modelled
-            using YANG models.
+        # - name: yangify
+        #   installed_by: pip3
+        #   url: https://github.com/networktocode/yangify
+        #   docs: https://yangify.readthedocs.io/en/latest/
+        #   description: >-
+        #     Yangify is a framework that allows you to easily write code
+        #     that can map structured and unstructured data into data modelled
+        #     using YANG models.
 
         - name: rich
           installed_by: pip3
@@ -423,27 +423,27 @@ ants:
             inspiration from various sources to arrive at a powerful
             and clean feature set.
 
-        - name: pynetbox
-          installed_by: pip3
-          url: https://github.com/netbox-community/pynetbox
-          docs: https://pynetbox.readthedocs.io/en/latest/
-          description: >-
-            Python API client library for Netbox.
+        # - name: pynetbox
+        #   installed_by: pip3
+        #   url: https://github.com/netbox-community/pynetbox
+        #   docs: https://pynetbox.readthedocs.io/en/latest/
+        #   description: >-
+        #     Python API client library for Netbox.
 
-        - name: pynautobot
-          installed_by: pip3
-          url: https://github.com/nautobot/pynautobot
-          docs: https://pynautobot.readthedocs.io/en/stable/
-          description: >-
-            Python API client library for Nautobot.
+        # - name: pynautobot
+        #   installed_by: pip3
+        #   url: https://github.com/nautobot/pynautobot
+        #   docs: https://pynautobot.readthedocs.io/en/stable/
+        #   description: >-
+        #     Python API client library for Nautobot.
 
-        - name: netutils
-          installed_by: pip3
-          url: https://github.com/networktocode/netutils
-          docs: https://netutils.readthedocs.io/en/stable/
-          description: >-
-            A Python library that is a collection of objects for common
-            network automation tasks.
+        # - name: netutils
+        #   installed_by: pip3
+        #   url: https://github.com/networktocode/netutils
+        #   docs: https://netutils.readthedocs.io/en/stable/
+        #   description: >-
+        #     A Python library that is a collection of objects for common
+        #     network automation tasks.
 
         - name: ipython
           installed_by: pip3
@@ -467,39 +467,39 @@ ants:
             netlab is bringing infrastructure-as-code concepts to
             networking labs.
 
-        - name: scrapli
-          installed_by: pip3
-          url: https://github.com/carlmontanari/scrapli
-          docs: https://carlmontanari.github.io/scrapli/
-          description: >-
-            Fast, flexible, sync/async, Python screen scraping
-            client specifically for network devices.
+        # - name: scrapli
+        #   installed_by: pip3
+        #   url: https://github.com/carlmontanari/scrapli
+        #   docs: https://carlmontanari.github.io/scrapli/
+        #   description: >-
+        #     Fast, flexible, sync/async, Python screen scraping
+        #     client specifically for network devices.
 
-        - name: scrapli_netconf
-          installed_by: pip3
-          url: https://github.com/scrapli/scrapli_netconf
-          docs: https://scrapli.github.io/scrapli_netconf/
-          description: >-
-             Netconf driver built on top of scrapli.
+        # - name: scrapli_netconf
+        #   installed_by: pip3
+        #   url: https://github.com/scrapli/scrapli_netconf
+        #   docs: https://scrapli.github.io/scrapli_netconf/
+        #   description: >-
+        #      Netconf driver built on top of scrapli.
 
-        - name: scrapli-cfg
-          installed_by: pip3
-          url: https://github.com/scrapli/scrapli_cfg
-          docs: https://scrapli.github.io/scrapli_cfg/
-          description: >-
-            Utility that accepts a scrapli Telnet or SSH connection
-            and provides configuration management capabilities.
-            scrapli_cfg allows you to load candidate configurations
-            for merge or replace operations, generate diffs of the
-            current vs candidate, and of course commit or abort the
-            candidate configuration.
+        # - name: scrapli-cfg
+        #   installed_by: pip3
+        #   url: https://github.com/scrapli/scrapli_cfg
+        #   docs: https://scrapli.github.io/scrapli_cfg/
+        #   description: >-
+        #     Utility that accepts a scrapli Telnet or SSH connection
+        #     and provides configuration management capabilities.
+        #     scrapli_cfg allows you to load candidate configurations
+        #     for merge or replace operations, generate diffs of the
+        #     current vs candidate, and of course commit or abort the
+        #     candidate configuration.
 
-        - name: scrapli-community
-          installed_by: pip3
-          url: https://github.com/scrapli/scrapli_community
-          docs: https://scrapli.github.io/scrapli_community/
-          description: >-
-            Extra platforms that are not part of the core scrapli.
+        # - name: scrapli-community
+        #   installed_by: pip3
+        #   url: https://github.com/scrapli/scrapli_community
+        #   docs: https://scrapli.github.io/scrapli_community/
+        #   description: >-
+        #     Extra platforms that are not part of the core scrapli.
 
         # TODO: Enable once restrictive outdated dependencies are fixed.
         # - name: schema-enforcer
@@ -516,9 +516,9 @@ ants:
 
       packages:
 
-        - name: ansible
+        - name: ansible-core
           installed_by: pip3
-          version: "~=7.0"
+          version: "~=2.15"
           url: https://github.com/ansible/ansible
           docs: https://docs.ansible.com/ansible/latest/index.html
           description: >-
@@ -526,38 +526,40 @@ ants:
             cloud provisioning, configuration management, application
             deployment, intra-service orchestration, and many other IT needs.
 
-        - name: ansible-tower-cli
-          installed_by: pip3
-          url: https://github.com/ansible/tower-cli
-          docs: https://tower-cli.readthedocs.io/en/latest/
-          description: >-
-            tower-cli is a command line tool for Ansible Tower. It allows Tower
-            commands to be easily run from the Unix command line. It can also be
-            used as a client library for other python apps, or as a reference
-            for others developing API interactions with Tower's REST API.
+        # DEPRECATED in favour of
+        # https://github.com/ansible/awx/blob/devel/INSTALL.md#installing-the-awx-cli
+        # - name: ansible-tower-cli
+        #   installed_by: pip3
+        #   url: https://github.com/ansible/tower-cli
+        #   docs: https://tower-cli.readthedocs.io/en/latest/
+        #   description: >-
+        #     tower-cli is a command line tool for Ansible Tower. It allows Tower
+        #     commands to be easily run from the Unix command line. It can also be
+        #     used as a client library for other python apps, or as a reference
+        #     for others developing API interactions with Tower's REST API.
 
-        - name: ansible-lint
-          installed_by: pip3
-          url: https://github.com/ansible/ansible-lint
-          docs: https://docs.ansible.com/ansible-lint/
-          description: >-
-            Ansible Lint is a commandline tool for linting playbooks. Use it to
-            detect behaviors and practices that could potentially be improved.
+        # - name: ansible-lint
+        #   installed_by: pip3
+        #   url: https://github.com/ansible/ansible-lint
+        #   docs: https://docs.ansible.com/ansible-lint/
+        #   description: >-
+        #     Ansible Lint is a commandline tool for linting playbooks. Use it to
+        #     detect behaviors and practices that could potentially be improved.
 
-        - name: networktocode.nautobot
-          installed_by: ansible-galaxy
-          url: https://github.com/nautobot/nautobot-ansible
-          docs: https://nautobot-ansible.readthedocs.io/en/latest/
-          description: >-
-            Collection of Nautobot modules for Ansible.
+        # - name: networktocode.nautobot
+        #   installed_by: ansible-galaxy
+        #   url: https://github.com/nautobot/nautobot-ansible
+        #   docs: https://nautobot-ansible.readthedocs.io/en/latest/
+        #   description: >-
+        #     Collection of Nautobot modules for Ansible.
 
-        - name: napalm.napalm
-          installed_by: ansible-galaxy
-          url: https://github.com/napalm-automation/napalm-ansible
-          docs: https://napalm.readthedocs.io/en/latest/
-          description: >-
-            Collection of Ansible modules that use NAPALM to retrieve data or
-            modify configuration on networking devices.
+        # - name: napalm.napalm
+        #   installed_by: ansible-galaxy
+        #   url: https://github.com/napalm-automation/napalm-ansible
+        #   docs: https://napalm.readthedocs.io/en/latest/
+        #   description: >-
+        #     Collection of Ansible modules that use NAPALM to retrieve data or
+        #     modify configuration on networking devices.
 
 
     - name: system
@@ -745,6 +747,5 @@ ants:
         - name: docker-compose
           installed_by: vagrant
           url: https://docs.docker.com/compose/cli-command/
-          version: "v2.5.0"
           description: >-
             Docker Compose v2

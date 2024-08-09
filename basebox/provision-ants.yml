@@ -7,7 +7,7 @@
   vars:
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
   tasks:
     - name: CREATE FOLDERS
@@ -31,6 +31,10 @@
       become: true
       hostname:
         name: ants
+
+    - name: FIX LOCAL HOSTNAME RESOLUTION
+      become: true
+      shell: "sed -i 's/bookworm/ants/g' /etc/hosts"
 
     - name: CREATE /ANTS
       become: true
@@ -100,7 +104,7 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
   tasks:
 
@@ -122,38 +126,38 @@
         install_recommends: false
 
 
-- name: INSTALL PYTHON PACKAGES
-  hosts: all
-  tags: install_pip
+# - name: INSTALL PYTHON PACKAGES
+#   hosts: all
+#   tags: install_pip
 
-  vars_files:
-    - ants.yml
+#   vars_files:
+#     - ants.yml
 
-  vars:
-    - pip3_list: "{{ ants | json_query(
-                    'package_groups[].packages[?installed_by==`pip3`][]')
-                 }}"
-    - ansible_python_interpreter: /usr/bin/python3
-    - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+#   vars:
+#     - pip3_list: "{{ ants | json_query(
+#                     'package_groups[].packages[?installed_by==`pip3`][]')
+#                  }}"
+#     - ansible_python_interpreter: /usr/bin/python3
+#     - ansible_local: "/home/vagrant/.ansible"
+#     - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
-  tasks:
-    - debug:
-        msg: "Installing via pip3: {{ pip3_list | json_query('[].name') }}"
+#   tasks:
+#     - debug:
+#         msg: "Installing via pip3: {{ pip3_list | json_query('[].name') }}"
 
-    - name: GENERATE REQUIREMENTS.TXT
-      template:
-        src: files/requirements.j2
-        dest: /vagrant/requirements.txt
+#     - name: GENERATE REQUIREMENTS.TXT
+#       template:
+#         src: files/requirements.j2
+#         dest: /vagrant/requirements.txt
 
-    - name: INSTALL PYTHON3 PACKAGES VIA PIP3
-      pip:
-        requirements: "/vagrant/requirements.txt"
-        extra_args: --user -U
-        executable: pip3
+#     - name: INSTALL PYTHON3 PACKAGES VIA PIP3
+#       pip:
+#         requirements: "/vagrant/requirements.txt"
+#         extra_args: --user -U
+#         executable: pip3
 
-    - name: VALIDATE ALL PIP3 DEPENDENCIES ARE IN ORDER
-      shell: pip3 check
+#     - name: VALIDATE ALL PIP3 DEPENDENCIES ARE IN ORDER
+#       shell: pip3 check
 
 
 - name: INSTALL DOCKER UTILS AND CONTAINERS
@@ -173,53 +177,31 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
     - DOCKER_COMPOSE_VERSION: "{{ ants | json_query(
                     'package_groups[].packages[?name==`docker-compose`][].version')
                     | first
                  }}"
 
   tasks:
-    - debug:
-        msg: "Fetching docker images: {{ docker_image_list }}"
+    # - debug:
+    #     msg: "Fetching docker images: {{ docker_image_list }}"
 
-    - name: PULL DOCKER IMAGES LOCALLY
-      docker_image:
-        name: "{{ item }}"
-        tag: latest
-      loop: "{{ docker_image_list | list }}"
+    # - name: PULL DOCKER IMAGES LOCALLY
+    #   docker_image:
+    #     name: "{{ item }}"
+    #     tag: latest
+    #   loop: "{{ docker_image_list | list }}"
 
-    - debug:
-        msg: "Starting docker containers: {{ docker_start_list }}"
+    # - debug:
+    #     msg: "Starting docker containers: {{ docker_start_list }}"
 
-    - name: START DOCKER CONTAINERS
-      docker_container:
-        name: "{{ item | replace('/', '_') }}"
-        image: "{{ item.name }}:{{ item.version }}:"
-        published_ports: "{{ item.host_port }}:{{ item.container_port }}"
-      loop: "{{ docker_start_list | list }}"
-
-    # DEPRECATED - Compose is installed by vagrant docker provisioner via repo.
-    # For non-vagrant install use apt install docker-compose-plugin
-    # - name: CREATE DOCKER PLUGINS DIR
-    #   become: true
-    #   file:
-    #     name: "/usr/local/lib/docker/cli-plugins"
-    #     owner: root
-    #     group: root
-    #     mode: "755"
-    #     state: directory
-
-    # - name: DOWNLOAD DOCKER-COMPOSE {{ DOCKER_COMPOSE_VERSION }}
-    #   become: true
-    #   get_url:
-    #     url: "https://github.com/docker/compose/releases/download/\
-    #           {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64"
-    #     dest: "/usr/local/lib/docker/cli-plugins/docker-compose"
-    #     mode: "755"
-    #     # TOFIX - doesn't seem to work because of redirects
-    #     checksum: "sha256:https://github.com/docker/compose/releases/download/\
-    #           {{ DOCKER_COMPOSE_VERSION }}/docker-compose-linux-x86_64.sha256"
+    # - name: START DOCKER CONTAINERS
+    #   docker_container:
+    #     name: "{{ item | replace('/', '_') }}"
+    #     image: "{{ item.name }}:{{ item.version }}:"
+    #     published_ports: "{{ item.host_port }}:{{ item.container_port }}"
+    #   loop: "{{ docker_start_list | list }}"
 
     - name: CREATE SYMLINK FOR DOCKER-COMPOSE
       become: true
@@ -234,7 +216,8 @@
   tags: install_container_lab
 
   vars:
-    CONTAINERLAB_VERSION: "0.36.1"
+    CONTAINERLAB_VERSION: "0.56.0"
+    CONTAINERLAB_CHECKSUM: "sha256:bed9958800a5c65c78a80f8392c3965e9c27c5d054316a7500d39502347a4172"
 
   tasks:
 
@@ -246,7 +229,7 @@
               containerlab_{{ CONTAINERLAB_VERSION }}_linux_amd64.deb"
         dest: "/tmp/containerlab.deb"
         mode: "644"
-        checksum: "sha256:3d75ec8904b71f308a066cdd176b211b4ce41ec645b6894ee8f722534123fd26"
+        checksum: "{{ CONTAINERLAB_CHECKSUM }}"
 
     - name: INSTALL CONTAINERLAB {{ CONTAINERLAB_VERSION }}
       become: true
@@ -260,7 +243,8 @@
   tags: install_vale
 
   vars:
-    VALE_VERSION: "2.23.0"
+    VALE_VERSION: "3.7.0"
+    VALE_CHECKSUM: "sha256:1fe152f95b38d61be2ec914c5dd816e8733e5bbe78bb6e9827a1214e4b711109"
 
   tasks:
 
@@ -272,7 +256,7 @@
               vale_{{ VALE_VERSION }}_Linux_64-bit.tar.gz"
         dest: "/tmp/vale.tar.gz"
         mode: "644"
-        checksum: "sha256:0f2de03a1c177a5a448f95bdbc27e075279dbdea28bdd0c230ccb9af7b230df8"
+        checksum: "{{ VALE_CHECKSUM }}"
 
     - name: INSTALL VALE {{ VALE_VERSION }}
       become: true
@@ -297,7 +281,7 @@
     - name: ADD HASHICORP APT REPOSITORY
       become: true
       ansible.builtin.apt_repository:
-        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com jammy main"
+        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com bookworm main"
         state: present
 
     - name: INSTALL PACKAGES VIA APT
@@ -315,7 +299,7 @@
   tags: install_golang
 
   vars:
-    GOLANG_VERSION: "1.20.1"
+    GOLANG_VERSION: "1.22.6"
 
   tasks:
     - name:
@@ -331,12 +315,12 @@
   tags: install_poetry
 
   vars:
-    POETRY_VERSION: "1.3.2"
+    POETRY_VERSION: "1.8.3"
 
   tasks:
     - name:
       ansible.builtin.shell: |
-        curl -sSL https://install.python-poetry.org | POETRY_VERSION={{ POETRY_VERSION }} python3 -
+        pipx install poetry=={{ POETRY_VERSION }}
         /home/vagrant/.local/bin/poetry completions bash >> ~/.bash_completion
 
 
@@ -345,7 +329,7 @@
   tags: install_pyenv
 
   vars:
-    PYENV_VERSION: "2.3.13"
+    PYENV_VERSION: "2.4.10"
 
   tasks:
     - name:
@@ -370,7 +354,7 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
   tasks:
     - debug:
