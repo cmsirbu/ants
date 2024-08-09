@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     # Install python cli tools for user vagrant
     # ansible core and collections for provisioner playbook
-    pipx install "ansible-core~=2.15"
+    pipx install "ansible-core~=2.17"
     pipx inject ansible-core jmespath
     /home/vagrant/.local/bin/ansible-galaxy collection install community.general
     pipx install invoke

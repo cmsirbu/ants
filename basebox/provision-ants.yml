@@ -7,7 +7,7 @@
   vars:
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
   tasks:
     - name: CREATE FOLDERS
@@ -104,7 +104,7 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
   tasks:
 
@@ -139,7 +139,7 @@
 #                  }}"
 #     - ansible_python_interpreter: /usr/bin/python3
 #     - ansible_local: "/home/vagrant/.ansible"
-#     - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+#     - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
 #   tasks:
 #     - debug:
@@ -177,7 +177,7 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
     - DOCKER_COMPOSE_VERSION: "{{ ants | json_query(
                     'package_groups[].packages[?name==`docker-compose`][].version')
                     | first
@@ -216,8 +216,8 @@
   tags: install_container_lab
 
   vars:
-    CONTAINERLAB_VERSION: "0.47.2"
-    CONTAINERLAB_CHECKSUM: "sha256:2383fc435fe674af293d4eaeb97f219623a8cf80adaf181270bd2bcbb13a6fd9"
+    CONTAINERLAB_VERSION: "0.56.0"
+    CONTAINERLAB_CHECKSUM: "sha256:bed9958800a5c65c78a80f8392c3965e9c27c5d054316a7500d39502347a4172"
 
   tasks:
 
@@ -243,8 +243,8 @@
   tags: install_vale
 
   vars:
-    VALE_VERSION: "2.29.6"
-    VALE_CHECKSUM: "sha256:8c1d99c8c074c9bf810a3aec850e967d9f1ba6b7e09d4e8b621a17730aa74b77"
+    VALE_VERSION: "3.7.0"
+    VALE_CHECKSUM: "sha256:1fe152f95b38d61be2ec914c5dd816e8733e5bbe78bb6e9827a1214e4b711109"
 
   tasks:
 
@@ -299,7 +299,7 @@
   tags: install_golang
 
   vars:
-    GOLANG_VERSION: "1.21.3"
+    GOLANG_VERSION: "1.22.6"
 
   tasks:
     - name:
@@ -315,7 +315,7 @@
   tags: install_poetry
 
   vars:
-    POETRY_VERSION: "1.7.0"
+    POETRY_VERSION: "1.8.3"
 
   tasks:
     - name:
@@ -329,7 +329,7 @@
   tags: install_pyenv
 
   vars:
-    PYENV_VERSION: "2.3.32"
+    PYENV_VERSION: "2.4.10"
 
   tasks:
     - name:
@@ -354,7 +354,7 @@
                  }}"
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_local: "/home/vagrant/.ansible"
-    - python3_local: "/home/vagrant/.local/lib/python3.8/site-packages"
+    - python3_local: "/home/vagrant/.local/lib/python3.11/site-packages"
 
   tasks:
     - debug:

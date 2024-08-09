@@ -7,6 +7,30 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ## [Unreleased]
 
+## [v24.08.0]
+
+After successful testing with the `23.11.0.lite` version of the box, the base box build via vagrant is now on a Debian 12 (bookworm) base.
+
+### Added
+
+- More python tooling provided out of the box as system packages `ipython, pipx, cookiecutter, invoke, networklab`.
+
+### Changed
+
+- ANTS is built from the `debian/bookworm64` box instead of Ubuntu.
+- Python packages are not installed via the system python inside the user folder. All CLI tools are installed through `pipx` in dedicated virtual environments.
+- Updated `ansible-core` to `2.17`.
+- Updated `containerlab` to `0.56.0`.
+- Updated `vale` to `3.7.0`.
+- Updated `go` to `1.22.6`.
+- Updated `poetry` to `1.8.3`.
+- Updated `pyenv` to `2.4.10`.
+
+### Removed
+
+- All previously installed tooling via `pip` is removed.
+
+
 ## [v23.02.0]
 
 This is the last major full-fat release with many Python libraries pre-installed. Due to dependency hell type issues making each release a bit of a struggle, the path onwards will be to use a leaner base with separate environments managed via `poetry` and `pyenv` to install tools as needed.
