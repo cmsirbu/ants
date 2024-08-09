@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
   # 1024 is default, modify as needed
   # config.vm.provider "virtualbox" do |vb|
   #   vb.memory = "1024"
+  #   vb.cpus = 2
   # end
 
   # example provisioner for adding more packages
